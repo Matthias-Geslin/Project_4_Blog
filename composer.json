@@ -1,0 +1,8 @@
+{
+    "name": "project/blog",
+    "description": "Openclassrooms Project - Blog in PHP",
+    "license": "MIT",
+    "require": {
+        "phpunit/phpunit": "^8.4"
+    }
+}
