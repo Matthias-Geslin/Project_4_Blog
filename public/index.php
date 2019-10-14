@@ -1,14 +1,17 @@
-<?php $title = "Connexion au site"; ?>
-
-<?php ob_start(); ?>
-    <header>
-        <h1>Bienvenue sur mon blog !</h1>
-        <form action="../src/View/postsview.php" method="post">
-            <label for="login">Veuillez choisir un nom d'utilisateur :</label>
-            <input type="password" id="login" name="login">
-            <input type="submit" value="Valider">
-        </form>
-    </header>
-<?php $content = ob_get_clean(); ?>
-
 <?php require('../src/View/template.php');
+
+use App\Router;
+
+/* Call Required of the Composer Autoload to load Classes */
+require_once '../vendor/autoload.php';
+
+/* Start Sessions Feature */
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+/* Create the Router */
+$router = new Router();
+
+/* Run Application */
+$router->run();
