@@ -1,4 +1,4 @@
-<?php require('../src/View/template.php');
+<?php
 
 use App\Router;
 
