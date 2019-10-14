@@ -4,6 +4,7 @@
     "license": "MIT",
     "require": {
         "phpunit/phpunit": "^8.4",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "twig/twig": "^2.0"
     }
 }
