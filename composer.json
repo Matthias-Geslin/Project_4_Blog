@@ -1,9 +1,13 @@
 {
-    "name": "project/blog",
-    "description": "Openclassrooms Project - Blog in PHP",
-    "license": "MIT",
-    "require": {
-      "ext-pdo": "*",
-        "twig/twig": "^2.0"
+  "name": "project/blog",
+  "description": "Openclassrooms Project - Blog in PHP",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
     }
+  },
+  "require": {
+    "twig/twig": "^2.0"
+  }
 }
