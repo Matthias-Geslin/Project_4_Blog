@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -17,7 +18,8 @@ class HomeController extends MainController
      */
     public function defaultMethod()
     {
+        $postsList = ModelFactory::getModel('posts')->listData();
         /* Return the Rendering of the View home.twig */
-        return $this->render('home.twig');
+        return $this->render('home.twig', ['post' => $postsList]);
     }
 }
