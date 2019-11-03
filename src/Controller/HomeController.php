@@ -20,6 +20,6 @@ class HomeController extends MainController
     {
         $postsList = ModelFactory::getModel('posts')->listData();
         /* Return the Rendering of the View home.twig */
-        return $this->render('home.twig', ['post' => $postsList]);
+        return $this->render('home.twig', ['posts' => $postsList]);
     }
 }
