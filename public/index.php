@@ -1,6 +1,7 @@
 <?php
 
 use App\Router;
+use Tracy\Debugger;
 
 /* Call Required of the Composer Autoload to load Classes */
 require_once '../vendor/autoload.php';
@@ -12,6 +13,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 /* Create the Router */
 $router = new Router();
+
+Debugger::enable();
 
 /* Run Application */
 $router->run();

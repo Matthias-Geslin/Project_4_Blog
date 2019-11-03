@@ -1,10 +1,20 @@
-{% extends "template.twig" %}
+{% extends 'template.twig' %}
 
 
 {% block title %} Bienvenue Sur mon blog {% endblock %}
 
 {% block content %}
-<section>
-    <h1>Bonjour à tous</h1>
-</section>
+    <section>
+        <h1>Voici mon dernier chapitre :</h1>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    {{ post.title }}
+                    <br>
+                    {{ post.content }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
