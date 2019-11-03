@@ -9,5 +9,8 @@
   },
   "require": {
     "twig/twig": "^2.0"
+  },
+  "require-dev": {
+    "tracy/tracy": "2.7.0"
   }
 }
