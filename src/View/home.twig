@@ -6,8 +6,15 @@
 {% block content %}
     <section>
         <h1>Voici mon dernier chapitre :</h1>
-        <p>
-                {{ posts.content }}
-        </p>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    {{ post.title }}
+                    <br>
+                    {{ post.content }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}
