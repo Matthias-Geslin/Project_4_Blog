@@ -1,0 +1,59 @@
+/* font name */
+/*@font-face {*/
+/*    font-family: "#"*/
+/*    src: url("") format(""),*/
+/*    url("") format("");*/
+/*}*/
+
+/* @keyframes name */
+@keyframes name {}
+
+/* webkit keyframe name */
+@-webkit-keyframes name{}
+
+/*  */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: royalblue;
+    color: ghostwhite;
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+nav li {
+    padding: 10px;
+}
+
+/*  */
+section {}
+
+/*  */
+main {}
+
+/*  */
+article {}
+
+/*  */
+aside {}
+
+/*  */
+footer {}
+
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Media mobile screen */
+@media screen and (min-width: 479px) {}
+/* Media tablet screen */
+@media screen and (min-width: 959px) {}
+/* Media desktop screen */
+@media screen and (min-width: 1281px) {}
