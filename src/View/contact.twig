@@ -1,0 +1,22 @@
+{% extends 'layout/template.twig' %}
+
+{% block title %} Me contacter {% endblock %}
+
+{% block content %}
+    <form method="post" action="#">
+        <label for="FirstName">Votre Prénom</label>
+        <input type="text" id="FirstName" placeholder="Prénom" name="FirstName" required>
+
+        <label for="LastName">Votre nom</label>
+        <input type="text" id="LastName" placeholder="Nom" name="LastName" required>
+
+        <label for="Mail">E-mail</label>
+        <input type="email" id="Mail" placeholder="Mail" name="Mail" required>
+
+        <label for="object">L'objet du message</label>
+        <input type="text" id="object" placeholder="Objet du message" required>
+
+        <label for="message">Votre Message</label>
+        <textarea type="text" id="message" placeholder="Votre Message" rows="4" required></textarea>
+    </form>
+{% endblock %}
