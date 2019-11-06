@@ -14,7 +14,7 @@ public/font/
 public/img/
 
 # Frontend Dependencies
-#public/node_modules/
+public/node_modules/
 
 # PHP Dependencies
 vendor/
