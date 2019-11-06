@@ -40,8 +40,9 @@ article {}
 aside {}
 
 /*  */
-footer {}
-
+footer {
+    display: flex;
+}
 
 a {
     text-decoration: none;
