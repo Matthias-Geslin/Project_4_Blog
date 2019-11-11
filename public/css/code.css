@@ -28,20 +28,22 @@ nav li {
 }
 
 /*  */
-section {}
+section h2 {
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
 
 /*  */
-main {}
-
-/*  */
-article {}
-
-/*  */
-aside {}
+form {
+    display: flex;
+    flex-direction: column;
+}
 
 /*  */
 footer {
     display: flex;
+    justify-content: center;
 }
 
 a {
@@ -53,7 +55,13 @@ ul {
 }
 
 /* Media mobile screen */
-@media screen and (min-width: 479px) {}
+@media screen and (min-width: 479px) {
+    form {
+        padding: 0 25% 0 25%;
+        margin: auto;
+        max-width: 70%;
+    }
+}
 /* Media tablet screen */
 @media screen and (min-width: 959px) {}
 /* Media desktop screen */
