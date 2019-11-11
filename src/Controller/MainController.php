@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Controller\Extension\PhpAdditionalExtension;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -22,6 +23,7 @@ abstract class MainController
     {
         /* Get the Template engine */
         $this->twig = $twig;
+        $this->twig->addExtension(new PhpAdditionalExtension());
     }
     /**
      * @param string $page
