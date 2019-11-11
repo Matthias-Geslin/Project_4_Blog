@@ -1,9 +1,11 @@
 <?php
 namespace App\Controller;
+
 use App\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+
 /**
  * Class ConnexionController
  * @package App\Controller
@@ -18,7 +20,6 @@ class ConnexionController extends MainController
      */
     public function defaultMethod()
     {
-        /* Return the Rendering of the View home.twig */
         return $this->render('connexion.twig');
     }
 }
