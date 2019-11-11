@@ -7,6 +7,7 @@
 {% block title %} Me contacter {% endblock %}
 
 {% block content %}
+    <h2>Formulaire de contact</h2>
     <form method="post" action="#">
         <label for="FirstName">Votre Prénom</label>
         <input type="text" id="FirstName" placeholder="Prénom" name="FirstName" required>
@@ -21,6 +22,7 @@
         <input type="text" id="object" placeholder="Objet du message" required>
 
         <label for="message">Votre Message</label>
-        <textarea type="text" id="message" placeholder="Votre Message" rows="4" required></textarea>
+        <textarea id="message" placeholder="Votre Message" rows="4" required></textarea>
+        <input type="submit">
     </form>
 {% endblock %}
