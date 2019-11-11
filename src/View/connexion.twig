@@ -5,5 +5,14 @@
 {% endblock %}
 
 {% block content %}
+    <h2>Connexion au site</h2>
+    <form method="post" action="#">
+        <label for="Login">Votre Identifiant</label>
+        <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
 
+        <label for="Password">Votre mot de passe</label>
+        <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
+
+        <input type="submit">
+    </form>
 {% endblock %}
