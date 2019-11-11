@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller\Extension;
+
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+
 /**
  * Class PhpAdditionalTwigExtension
  * Adds features to Twig Views
@@ -19,6 +21,7 @@ class PhpAdditionalExtension extends AbstractExtension
             new TwigFunction('url', array($this, 'url'))
         );
     }
+
     /**
      * Returns the Page URL
      * @param string $page

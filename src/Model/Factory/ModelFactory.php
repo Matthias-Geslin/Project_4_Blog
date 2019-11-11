@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Factory;
+
 use App\Model\PDOModel;
+
 /**
  * Class ModelFactory
  * Creates the Model if it doesn't exist
@@ -13,6 +15,7 @@ class ModelFactory
      * @var array
      */
     private static $models = [];
+
     /**
      * Returns the Model if it exists or creates it before returning it
      * @param $table
