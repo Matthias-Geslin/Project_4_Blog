@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Model\Factory\PDOFactory;
 
-class PostManager extends PDOFactory
+class PostModel extends PDOFactory
 {
     public function getPosts()
     {
