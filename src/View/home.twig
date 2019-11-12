@@ -1,10 +1,12 @@
-{% extends 'template.twig' %}
+{% extends 'layout/template.twig' %}
 
+{% block description %}
+
+{% endblock %}
 
 {% block title %} Bienvenue Sur mon blog {% endblock %}
 
 {% block content %}
-    <section>
         <h1>Voici mon dernier chapitre :</h1>
         <ul>
             {% for post in posts %}
@@ -16,5 +18,4 @@
                 <hr>
             {% endfor %}
         </ul>
-    </section>
 {% endblock %}

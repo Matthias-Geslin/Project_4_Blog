@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
+
 use PDO;
+
 /**
  * Class PDOModel
  * Prepares Queries before execution & return
@@ -13,6 +15,7 @@ class PDOModel
      * @var PDO
      */
     private $pdo;
+
     /**
      * PDOModel constructor
      * Receive the PDO Connection & store it
@@ -22,6 +25,7 @@ class PDOModel
     {
         $this->pdo = $pdo;
     }
+
     /**
      * Returns a unique result from the Database
      * @param string $query
@@ -34,6 +38,7 @@ class PDOModel
         $PDOStatement->execute($params);
         return $PDOStatement->fetch();
     }
+
     /**
      * Returns many results from the Database
      * @param string $query
@@ -46,6 +51,7 @@ class PDOModel
         $PDOStatement->execute($params);
         return $PDOStatement->fetchAll();
     }
+
     /**
      * Executes an action to the Database
      * @param string $query

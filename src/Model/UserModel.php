@@ -1,5 +1,6 @@
 <?php
 namespace App\Model;
+
 /**
  * Class UserModel
  * Manages User Data

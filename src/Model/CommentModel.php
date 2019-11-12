@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Model\Factory\PDOFactory;
 
-class CommentManager extends PDOFactory
+class CommentModel extends PDOFactory
 {
     public function getComments($postId)
     {

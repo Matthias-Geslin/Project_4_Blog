@@ -1,11 +1,11 @@
 <?php
 
-require_once('../Model/PostManager.php');
-require_once('../Model/CommentManager.php');
+require_once('../Model/PostModel.php');
+require_once('../Model/CommentModel.php');
 
 function listPosts()
 {
-    $postManager = new App\Model\PostManager();
+    $postManager = new App\Model\PostModel();
     $posts = $postManager->getPosts();
 
     require('../view/home.twig');
@@ -13,8 +13,8 @@ function listPosts()
 
 function post()
 {
-    $postManager = new App\Model\PostManager();
-    $commentManager = new App\Model\CommentManager();
+    $postManager = new App\Model\PostModel();
+    $commentManager = new App\Model\CommentModel();
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
@@ -24,7 +24,7 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new App\Model\CommentManager();
+    $commentManager = new App\Model\CommentModel();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 

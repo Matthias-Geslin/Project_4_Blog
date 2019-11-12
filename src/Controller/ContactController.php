@@ -7,10 +7,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class HomeController
+ * Class ContactController
  * @package App\Controller
  */
-class HomeController extends MainController
+class ContactController extends MainController
 {
     /**
      * @return string
@@ -20,7 +20,6 @@ class HomeController extends MainController
      */
     public function defaultMethod()
     {
-        $postsList = ModelFactory::getModel('posts')->listData();
-        return $this->render('home.twig', ['posts' => $postsList]);
+        return $this->render('contact.twig');
     }
 }
