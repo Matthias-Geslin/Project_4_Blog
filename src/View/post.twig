@@ -1,0 +1,21 @@
+{% extends 'layout/template.twig' %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block title %} Voici tout mes chapitres {% endblock %}
+
+{% block content %}
+    <h1>Voici mes chapitres :</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ post.title }}
+                <br>
+                {{ post.content }}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endblock %}
