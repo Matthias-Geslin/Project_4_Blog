@@ -6,21 +6,34 @@ use App\Model\Factory\PDOFactory;
 
 class PostModel extends PDOFactory
 {
+    /**
+     * @return false|\PDOStatement
+     */
     public function getPosts()
     {
-        $db = $this->getPDO();
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        $req = $this->getPDO()->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0,5');
 
         return $req;
     }
 
+    /**
+     * @param $postId
+     * @return mixed
+     */
     public function getPost($postId)
     {
-        $db = $this->getPDO();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $req = $this->getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
         $post = $req->fetch();
 
         return $post;
+    }
+
+
+    public function getLastPost()
+    {
+        $req = $this->getPDO()->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
+
+        return $req;
     }
 }
