@@ -25,7 +25,7 @@ class Router
     /**
      * Default method
      */
-    const DEFAULT_METHOD        = 'DefaultMethod';
+    const DEFAULT_METHOD        = 'LaunchMethod';
 
     /**
      * @var null

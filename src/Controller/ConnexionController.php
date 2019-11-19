@@ -18,7 +18,7 @@ class ConnexionController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function defaultMethod()
+    public function launchMethod()
     {
         return $this->render('connexion.twig');
     }

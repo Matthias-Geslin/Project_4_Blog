@@ -18,7 +18,7 @@ class ContactController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function defaultMethod()
+    public function launchMethod()
     {
         return $this->render('contact.twig');
     }
