@@ -1,34 +1,43 @@
-/* font name */
-/*@font-face {*/
-/*    font-family: "#"*/
-/*    src: url("") format(""),*/
-/*    url("") format("");*/
-/*}*/
-
 /* @keyframes name */
 @keyframes name {}
 
 /* webkit keyframe name */
 @-webkit-keyframes name{}
 
+body {
+    font-family: 'Quicksand', sans-serif, cursive;
+}
+
+nav,
+h2,
+h1 {
+    font-family: 'Righteous', sans-serif, cursive;
+}
+h2,
+h1{
+    color: #343738;
+}
+
 /*  */
 nav {
     display: flex;
     justify-content: center;
-    background-color: royalblue;
-    color: ghostwhite;
 }
 nav ul {
     display: flex;
     flex-direction: row;
-    padding: 10px;
 }
 nav li {
     padding: 10px;
 }
+nav,
+footer
+{
+    background-color: royalblue;
+}
 
 /*  */
-section h2 {
+section h1 {
     display: flex;
     justify-content: center;
     width: auto;
@@ -42,16 +51,29 @@ form {
 
 /*  */
 footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 a {
     text-decoration: none;
 }
+a:link {
+    color: ghostwhite;
+}
+a:visited {
+    color:papayawhip;
+}
+a:hover {
+    color: dimgrey;
+}
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 /* Media mobile screen */
