@@ -11,7 +11,7 @@
     <ul>
         {% for post in posts %}
             <li>
-                {{ post.title }}
+                {{ loop.index }} - {{ post.title }}
                 <br>
                 {{ post.content }}
             </li>
