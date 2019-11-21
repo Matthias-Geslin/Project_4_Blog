@@ -24,12 +24,13 @@ class PostModel extends PDOFactory
     {
         $req = $this->getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
-        $post = $req->fetch();
 
-        return $post;
+        return $req;
     }
 
-
+    /**
+     * @return false|\PDOStatement
+     */
     public function getLastPost()
     {
         $req = $this->getPDO()->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
