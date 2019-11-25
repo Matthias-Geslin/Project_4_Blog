@@ -1,9 +1,14 @@
-/* @keyframes name */
-@keyframes name {}
+/* Keyframe fade */
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
 
-/* webkit keyframe name */
-@-webkit-keyframes name{}
-
+/* webkit Keyframe fade */
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
 html {
     height: 100%;
 }
@@ -127,6 +132,11 @@ ul {
     width: 40px;
 }
 
+/* Fading animation */
+.fade {
+    animation: fade 1.5s;
+    -webkit-animation: fade 1.5s;
+}
 
 /*~~~~##~~~~*/
 /* Helpers */
