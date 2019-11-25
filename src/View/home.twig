@@ -8,13 +8,44 @@
 
 {% block content %}
         <h1>Voici mon dernier chapitre :</h1>
+    <div>
         <ul>
             {% for post in posts %}
-                <li>
-                    {{ post.title }}
+                <li class="picture fade">
+                    {{ loop.index }} - {{ post.title }}
                     <br>
                     {{ post.content }}
                 </li>
             {% endfor %}
         </ul>
+    </div>
+
+
+    <!--    Controls    -->
+    <div class="controls flex">
+        <input type="button"  id="prev">
+        <label for="prev"  class="prev" id="prev-lb">
+            <i class="fa fa-caret-left prev-mvt"></i>
+        </label>
+
+        <input type="button" id="play-btn">
+        <label for="play-btn" id="play" class="play">
+            <i class="fa fa-play play-mvt"></i>
+        </label>
+
+        <input type="button" id="pause-btn">
+        <label for="pause-btn" id="pause" class="pause hide">
+            <i class="fa fa-pause pause-mvt"></i>
+        </label>
+
+        <input type="button" id="next">
+        <label for="next" class="next" id="next-lb">
+            <i class="fa fa-caret-right next-mvt"></i>
+        </label>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="../public/js/script.js"></script>
+    <script src="../public/js/Slider.js"></script>
 {% endblock %}
