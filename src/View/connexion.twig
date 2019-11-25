@@ -5,14 +5,43 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Connexion au site</h1>
-    <form method="post" action="#">
-        <label for="Login">Votre Identifiant</label>
-        <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
 
-        <label for="Password">Votre mot de passe</label>
-        <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
+    <input type="radio" class="radio1" id="radio" name="radio" checked>
+    <input type="radio" class="radio2" id="radio2" name="radio">
 
-        <input type="submit">
-    </form>
+    <h1>
+        <label for="radio" class="sign-in">Connexion au site</label>
+    </h1>
+
+    <section class="sign-in">
+        <form method="post" action="#">
+            <label for="Login">Votre Identifiant</label>
+            <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
+
+            <label for="Password">Votre mot de passe</label>
+            <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
+
+            <input type="submit">
+        </form>
+    </section>
+
+    <h1>
+        <label for="radio2" class="sign-up">Inscription</label>
+    </h1>
+    <section class="sign-up">
+        <form method="post" action="#">
+            <label for="FirstName">Votre prénom</label>
+            <input type="text" id="FirstName" placeholder="Prénom" name="FirstName" required>
+
+            <label for="Login">Votre Identifiant</label>
+            <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
+
+            <label for="Password">Votre mot de passe</label>
+            <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
+
+            <input type="submit">
+        </form>
+    </section>
+
+
 {% endblock %}
