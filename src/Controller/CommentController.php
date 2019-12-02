@@ -1,12 +1,16 @@
 <?php
 namespace App\Controller;
 
-use App\Model\CommentModel;
+use App\Model\CommentsModel;
 use App\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
+/**
+ * Class CommentController
+ * @package App\Controller
+ */
 class CommentController extends MainController
 {
     /**
@@ -39,7 +43,7 @@ class CommentController extends MainController
      */
     function addComment($postId, $author, $comment)
     {
-        $commentManager = new CommentModel;
+        $commentManager = new CommentsModel;
 
         $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
