@@ -40,8 +40,8 @@ class PostController extends MainController
      */
     public function gainPost()
     {
-        $post = ModelFactory::getModel('posts')->getPost($_GET['id']);
-        $comments = ModelFactory::getModel('comments')->getComments($_GET['id']);
+        $post = ModelFactory::getModel('posts')->readData($_GET['id']);
+        $comments = ModelFactory::getModel('comments')->readData($_GET['id']);
 
         return $this->render('post.twig',
             [
@@ -80,7 +80,9 @@ class PostController extends MainController
      */
     public function postDelete()
     {
+        $postDelete = ModelFactory::getModel('posts')->deleteData($_GET['id']);
 
+        return $this->render('post.twig', ['postDelete' => $postDelete]);
     }
 
     /**
@@ -91,7 +93,15 @@ class PostController extends MainController
      */
     public function postModify()
     {
+        $title = filter_input(INPUT_POST, 'title');
+        $content = filter_input(INPUT_POST, 'content');
 
+        $postUpdate = ModelFactory::getModel('posts')->updateData($_GET['id'],[
+            'title' => $title,
+            'content' => $content
+        ]);
+
+        return $this->render('post.twig', ['postUpdate' => $postUpdate]);
     }
 
 
