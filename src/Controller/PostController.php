@@ -1,9 +1,11 @@
 <?php
 namespace App\Controller;
 
-use App\Model\PostModel;
-use App\Model\CommentModel;
 use App\Model\Factory\ModelFactory;
+use App\Model\Factory\PDOFactory;
+use App\Model\PostsModel;
+use App\Model\CommentsModel;
+use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -22,10 +24,12 @@ class PostController extends MainController
      */
     public function launchMethod()
     {
-        $postManager = new PostModel;
-        $posts = $postManager->getPosts();
+        $posts = ModelFactory::getModel('posts')->listData();
 
-        return $this->render("post.twig", ['posts' => $posts]);
+        return $this->render("post.twig", [
+            'posts' => $posts,
+            'createdPost' => $this->createPost()
+        ]);
     }
 
     /**
@@ -34,26 +38,38 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function post()
+    public function gainPost()
     {
-        $postManager = new PostModel();
-        $commentManager = new CommentModel();
+        $post = ModelFactory::getModel('posts')->getPost($_GET['id']);
+        $comments = ModelFactory::getModel('comments')->getComments($_GET['id']);
 
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
-
-        return $this->render('');
+        return $this->render('post.twig',
+            [
+                'post' => $post,
+                'comments' => $comments
+            ]);
     }
 
     /**
      * @return string
-     * @throws
-     * @throws
-     * @throws
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function postAdd()
+    public function createPost()
     {
+        $title = filter_input(INPUT_POST, 'title');
+        $content = filter_input(INPUT_POST, 'content');
 
+        if (empty($title && $content)) {
+            return $this->render('post.twig');
+        } else {
+            $createdPost = ModelFactory::getModel('posts')->createData([
+                'title' => $title,
+                'content' => $content
+            ]);
+            return $this->render('post.twig', ['createdPost' => $createdPost]);
+        }
     }
 
     /**
