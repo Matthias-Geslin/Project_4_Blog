@@ -6,7 +6,20 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
+/**
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends MainController
 {
-
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function launchMethod()
+    {
+        return $this->render('');
+    }
 }
