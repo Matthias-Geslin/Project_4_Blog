@@ -2,15 +2,16 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
+use App\Model\Factory\PDOFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class UserController
+ * Class UsersController
  * @package App\Controller
  */
-class UserController extends MainController
+class UsersController extends MainController
 {
     /**
      * @return string
@@ -20,6 +21,6 @@ class UserController extends MainController
      */
     public function launchMethod()
     {
-        return $this->render('');
+        return $this->render('connexion.twig');
     }
 }
