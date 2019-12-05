@@ -2,10 +2,6 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
-use App\Model\Factory\PDOFactory;
-use App\Model\PostsModel;
-use App\Model\CommentsModel;
-use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -68,7 +64,7 @@ class PostController extends MainController
                 'title' => $title,
                 'content' => $content
             ]);
-            return $this->render('post.twig', ['createdPost' => $createdPost]);
+            return $this->redirect('post', ['createdPost' => $createdPost]);
         }
     }
 
