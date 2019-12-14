@@ -20,6 +20,21 @@ class ConnexionController extends MainController
      */
     public function launchMethod()
     {
+    if (!empty($this->post['email']) && !empty($this->post['pass'])) {
+         $user = ModelFactory::getModel('users')->readData($this->post['email'], 'email');
+
+          if ($this->post['pass'] ==  $user['pass']) {
+            $this->session->sessionCreate(
+                         $user['id'],
+                         $user['first_name'],
+                         $user['last_name'],
+                         $user['email'],
+                         $user['pass']
+                     );
+              $this->redirect('users');
+              exit();
+          }
+      }
         return $this->render('connexion.twig');
     }
 }
