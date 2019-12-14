@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Controller\SuperGlobalsControllers\Get;
-use App\Controller\SuperGlobalsControllers\Post;
 use App\Controller\SuperGlobalsControllers\Session;
 
 /**
@@ -13,12 +11,12 @@ use App\Controller\SuperGlobalsControllers\Session;
 abstract class SuperGlobalsController
 {
     /**
-     * @var Get
+     * @var mixed
      */
     protected $get;
 
     /**
-     * @var Post
+     * @var mixed
      */
     protected $post;
 
@@ -32,8 +30,8 @@ abstract class SuperGlobalsController
      */
     public function __construct()
     {
-        $this->get      = new Get();
-        $this->post     = new Post();
+        $this->get      = filter_input_array(INPUT_GET);
+        $this->post     = filter_input_array(INPUT_POST);
         $this->session  = new Session();
     }
 }
