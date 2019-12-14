@@ -32,15 +32,19 @@ class Session
 
     /**
      * @param int $id
+     * @param string $first_name
+     * @param string $last_name
      * @param string $email
-     * @param string $pass
+     * @param string $password
      */
-    public function sessionCreate(int $id, string $email, string $pass)
+    public function sessionCreate(int $id, string $first_name, string $last_name, string $email, string $password)
     {
         $_SESSION['users'] = [
             'id' => $id,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $email,
-            'pass' => $pass
+            'pass' => $password
         ];
     }
 
@@ -65,36 +69,5 @@ class Session
             }
         }
         return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    public function getSessionArray()
-    {
-        return $this->session;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserArray()
-    {
-        if ($this->isLogged() === false) {
-            $this->user = [];
-        }
-        return $this->user;
-    }
-
-    /**
-     * @param $var
-     * @return mixed
-     */
-    public function getUserVar($var)
-    {
-        if ($this->isLogged() === false) {
-            $this->user[$var] = null;
-        }
-        return $this->user[$var];
     }
 }
