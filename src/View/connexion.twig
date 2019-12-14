@@ -6,12 +6,12 @@
 
 {% block content %}
     <ul>
-        <li>  <h1><label for="radio" class="sign-in">Connexion au site</label></h1></li>
+        <li><h1><label for="radio" class="sign-in">Connexion au site</label></h1></li>
     </ul>
 
     <input type="radio" class="radio1 hide" id="radio" name="radio" checked>
 
-    <form class="form" action="{{ url('users!launch') }}" method="post">
+    <form class="form" action="{{ url('connexion!launch') }}" method="post">
         <fieldset>
             <legend><i class="fas fa-lock" aria-hidden="true"></i> Login to the Administration</legend>
             <ul>
@@ -20,12 +20,11 @@
                     <input id="email" name="email" type="email" placeholder="Insert your email" required>
                 </li>
                 <li>
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" placeholder="Insert your password" autocomplete="off" required>
+                    <label for="pass">Password</label>
+                    <input id="pass" name="pass" type="password" placeholder="Insert your password" autocomplete="off" required>
                 </li>
                 <li>
-                    <input type="reset" value="Reset">
-                    <button type="submit" name="login_btn">Login</button>
+                    <button type="submit">Login</button>
                 </li>
             </ul>
         </fieldset>
