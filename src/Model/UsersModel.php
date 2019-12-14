@@ -4,10 +4,10 @@ namespace App\Model;
 use App\Model\Factory\PDOFactory;
 
 /**
- * Class AdminModel
- * Manages Admin Data
+ * Class UsersModel
+ * Manages User Data
  * @package App\Model
  */
-class AdminModel extends MainModel {
+class UsersModel extends MainModel {
 
 }

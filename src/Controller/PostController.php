@@ -26,11 +26,9 @@ class PostController extends MainController
     public function launchMethod()
     {
         $posts = ModelFactory::getModel('posts')->listData();
-        $comments = ModelFactory::getModel('comments')->listData();
 
         return $this->render("post.twig", [
-            'posts' => $posts,
-            'comments' => $comments
+            'posts' => $posts
         ]);
     }
 
@@ -55,13 +53,13 @@ class PostController extends MainController
         $content = $this->post['content'];
 
         if (empty($title && $content)) {
-            return $this->render('backend/admin.twig');
+            return $this->render('backend/users.twig');
         } else {
             $createdPost = ModelFactory::getModel('posts')->createData([
                 'title' => $title,
                 'content' => $content
             ]);
-           $this->redirect('admin', ['createdPost' => $createdPost]);
+           $this->redirect('users', ['createdPost' => $createdPost]);
         }
     }
 
@@ -74,7 +72,7 @@ class PostController extends MainController
     {
        ModelFactory::getModel('posts')->deleteData($this->get['id']);
 
-       $this->redirect('admin');
+       $this->redirect('users');
     }
 
     /**
@@ -90,7 +88,7 @@ class PostController extends MainController
 
         ModelFactory::getModel('posts')->updateData($this->get['id'], $this->post_content);
 
-        $this->redirect('admin');
+        $this->redirect('users');
     }
     $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
 

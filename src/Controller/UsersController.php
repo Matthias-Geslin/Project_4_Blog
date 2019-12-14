@@ -7,10 +7,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class AdminController
+ * Class UsersController
  * @package App\Controller
  */
-class AdminController extends MainController
+class UsersController extends MainController
 {
     /**
      * @return string
@@ -20,14 +20,10 @@ class AdminController extends MainController
      */
     public function launchMethod()
     {
-        if ($this->session->islogged())
-        {
-          $posts = ModelFactory::getModel('posts')->listData();
+      $posts = ModelFactory::getModel('posts')->listData();
 
-          return $this->render("backend/admin.twig", [
-              'posts' => $posts
-          ]);
-        }
-        $this->redirect('connexion');
+      return $this->render("backend/users.twig", [
+          'posts' => $posts
+      ]);
     }
 }
