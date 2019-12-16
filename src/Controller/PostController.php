@@ -26,9 +26,11 @@ class PostController extends MainController
     public function launchMethod()
     {
         $posts = ModelFactory::getModel('posts')->listData();
+        $comments = ModelFactory::getModel('comments')->listData();
 
         return $this->render("post.twig", [
-            'posts' => $posts
+            'posts' => $posts,
+            'comments' => $comments
         ]);
     }
 
