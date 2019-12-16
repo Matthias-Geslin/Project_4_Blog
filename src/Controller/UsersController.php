@@ -20,10 +20,14 @@ class UsersController extends MainController
      */
     public function launchMethod()
     {
-      $posts = ModelFactory::getModel('posts')->listData();
+        if ($this->session->islogged())
+        {
+          $posts = ModelFactory::getModel('posts')->listData();
 
-      return $this->render("backend/users.twig", [
-          'posts' => $posts
-      ]);
+          return $this->render("backend/users.twig", [
+              'posts' => $posts
+          ]);
+        }
+        $this->redirect('connexion');
     }
 }
