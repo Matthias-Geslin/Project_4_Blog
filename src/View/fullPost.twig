@@ -1,0 +1,28 @@
+{% extends 'layout/template.twig' %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<ul>
+    <li>
+        {{ post.id }} - {{ post.title }}
+        <br>
+        {{ post.content }}
+    </li>
+  <ul>
+    <li>{{ comment.author }}<li>
+    <li>{{ comment.comment}}</li>
+    <li>{{ comment.post_id }}</li>
+  </ul>
+
+  <li>
+    <a href="{{ url('post') }}">
+      <button type="button" name="button">Retour aux chapitres</button>
+    </a>
+  </li>
+</ul>
+{% endblock %}
