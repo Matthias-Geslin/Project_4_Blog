@@ -24,5 +24,20 @@
        </li>
    </ul>
 </form>
+<ul>
+  <li><h2>Commentaires associés:</h2></li>
+  <li>
+  {% for comment in comments %}
+        <li>{{ comment.author }}<li>
+        <li>{{ comment.comment}}</li>
+        <li>{{ comment.comment_date}}</li>
+        <li>
+          <a href="{{ url('comments!delete', {'id': comment.id}) }}">Suppression du commentaire
+             <i class="fas fa-times-circle fa-fw fa-lg"></i>
+          </a>
+        </li>
+  {% endfor %}
+  </li>
+</ul>
 <a href="{{ url('admin') }}">Panneau de contrôle</a>
 {% endblock %}
