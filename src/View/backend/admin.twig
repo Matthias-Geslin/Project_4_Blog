@@ -37,7 +37,7 @@
           {{ post.content }}
         </td>
         <td>
-          <a href="{{ url('post!modify', {'id': post.id}) }}">
+          <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
             <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
           </a>
           <a href="{{ url('post!delete', {'id': post.id}) }}">
