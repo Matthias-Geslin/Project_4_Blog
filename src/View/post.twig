@@ -19,22 +19,6 @@
                     <button type="button" name="button">Lire la suite</button>
                   </a>
                   <hr>
-
-
         {% endfor %}
-
-<h1>Commentaires: </h1>
-        {% for comment in comments %}
-        <ul>
-            <li>{{ comment.author }}<li>
-              <li>{{ comment.comment}}</li>
-              <li>
-                {{ comment.post_id }}
-              </li>
-        </ul>
-        <hr>
-
-        {% endfor %}
-
     </ul>
 {% endblock %}
