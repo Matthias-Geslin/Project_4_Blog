@@ -6,7 +6,7 @@
     "url": "https://github.com/Matthias-Geslin/Project_4_Blog.git"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.0"
+    "@fortawesome/fontawesome-free": "^5.11.2"
   },
   "author": "Matthias Geslin",
   "license": "MIT",
