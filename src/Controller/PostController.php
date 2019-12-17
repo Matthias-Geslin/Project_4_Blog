@@ -55,13 +55,13 @@ class PostController extends MainController
         $content = $this->post['content'];
 
         if (empty($title && $content)) {
-            return $this->render('backend/users.twig');
+            return $this->render('backend/admin.twig');
         } else {
             $createdPost = ModelFactory::getModel('posts')->createData([
                 'title' => $title,
                 'content' => $content
             ]);
-           $this->redirect('users', ['createdPost' => $createdPost]);
+           $this->redirect('admin', ['createdPost' => $createdPost]);
         }
     }
 
@@ -74,7 +74,7 @@ class PostController extends MainController
     {
        ModelFactory::getModel('posts')->deleteData($this->get['id']);
 
-       $this->redirect('users');
+       $this->redirect('admin');
     }
 
     /**
@@ -90,7 +90,7 @@ class PostController extends MainController
 
         ModelFactory::getModel('posts')->updateData($this->get['id'], $this->post_content);
 
-        $this->redirect('users');
+        $this->redirect('admin');
     }
     $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
 
