@@ -38,10 +38,11 @@ use Twig\Error\SyntaxError;
   public function readMethod()
   {
     $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
-    $comments = ModelFactory::getModel('comments')->readData($this->get['id']);
-    
+    $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'post_id');
+
       return $this->render('fullpost.twig', [
         'post' => $posts,
-        'comment' => $comments]);
+        'comments' => $comments
+      ]);
   }
 }
