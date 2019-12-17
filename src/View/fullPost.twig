@@ -12,12 +12,29 @@
         {{ post.id }} - {{ post.title }}
         <br>
         {{ post.content }}
+    </li><hr>
+    <li>
+      {% for comment in comments %}
+          <ul>
+            <li>{{ comment.author }}<li>
+            <li>{{ comment.comment}}</li>
+            <li>{{ comment.comment_date }}</li>
+          </ul>
+      {% endfor %}
     </li>
-  <ul>
-    <li>{{ comment.author }}<li>
-    <li>{{ comment.comment}}</li>
-    <li>{{ comment.post_id }}</li>
-  </ul>
+<li>
+  <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
+    <label for="author">Auteur</label>
+    <input type="text" name="author">
+
+    <label for="comment">Contenu du commentaire</label>
+    <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+
+    <input type="submit">
+  </form>
+</li>
+
+
 
   <li>
     <a href="{{ url('post') }}">
