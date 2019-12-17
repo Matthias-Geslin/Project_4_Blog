@@ -26,11 +26,9 @@ class PostController extends MainController
     public function launchMethod()
     {
         $posts = ModelFactory::getModel('posts')->listData();
-        $comments = ModelFactory::getModel('comments')->listData();
 
         return $this->render("post.twig", [
-            'posts' => $posts,
-            'comments' => $comments
+            'posts' => $posts
         ]);
     }
 
@@ -93,7 +91,11 @@ class PostController extends MainController
         $this->redirect('admin');
     }
     $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
+    $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'post_id');
 
-    return $this->render('backend/modifyPosts.twig', ['posts' => $posts]);
+    return $this->render('backend/modifyPosts.twig', [
+      'posts' => $posts,
+      'comments' => $comments
+  ]);
     }
 }
