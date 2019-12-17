@@ -5,43 +5,28 @@
 {% endblock %}
 
 {% block content %}
+    <ul>
+        <li><h1><label for="radio" class="sign-in">Connexion au site</label></h1></li>
+    </ul>
 
-    <input type="radio" class="radio1" id="radio" name="radio" checked>
-    <input type="radio" class="radio2" id="radio2" name="radio">
+    <input type="radio" class="radio1 hide" id="radio" name="radio" checked>
 
-    <h1>
-        <label for="radio" class="sign-in">Connexion au site</label>
-    </h1>
-
-    <section class="sign-in">
-        <form method="post" action="#">
-            <label for="Login">Votre Identifiant</label>
-            <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
-
-            <label for="Password">Votre mot de passe</label>
-            <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
-
-            <input type="submit">
-        </form>
-    </section>
-
-    <h1>
-        <label for="radio2" class="sign-up">Inscription</label>
-    </h1>
-    <section class="sign-up">
-        <form method="post" action="#">
-            <label for="FirstName">Votre prénom</label>
-            <input type="text" id="FirstName" placeholder="Prénom" name="FirstName" required>
-
-            <label for="Login">Votre Identifiant</label>
-            <input type="text" id="Login" placeholder="Identifiant" name="Login" required>
-
-            <label for="Password">Votre mot de passe</label>
-            <input type="text" id="Password" placeholder="Mot de passe" name="Password" required>
-
-            <input type="submit">
-        </form>
-    </section>
-
-
+    <form class="form" action="{{ url('connexion!launch') }}" method="post">
+        <fieldset>
+            <legend><i class="fas fa-lock" aria-hidden="true"></i> Login to the Administration</legend>
+            <ul>
+                <li>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="Insert your email" required>
+                </li>
+                <li>
+                    <label for="pass">Password</label>
+                    <input id="pass" name="pass" type="password" placeholder="Insert your password" autocomplete="off" required>
+                </li>
+                <li>
+                    <button type="submit">Login</button>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
 {% endblock %}

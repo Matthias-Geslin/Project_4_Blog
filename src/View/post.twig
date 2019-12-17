@@ -9,23 +9,32 @@
 {% block content %}
     <h1>Voici mes chapitres :</h1>
     <ul>
-        <li>
-            <form method="post" action="index.php?access=post">
-                <label for="title">Titre</label>
-                <input id="title" type="text" name="title" placeholder="Titre">
-
-                <label for="content">Contenu du chapitre</label>
-                <textarea name="content" id="content" cols="30" rows="5"></textarea>
-                <button type="submit" formaction="">Créer</button>
-            </form>
-        </li>
         {% for post in posts %}
-            <li>
-                {{ post.id }} - {{ post.title }}
-                <br>
-                {{ post.content }}
-            </li>
-            <hr>
+                  <li>
+                      {{ post.id }} - {{ post.title }}
+                      <br>
+                      {{ post.content | slice(0,150) }} ...
+                  </li>
+                  <a href="{{ url('fullPost!read', {'id': post.id}, {'id': comment.post_id}) }}">
+                    <button type="button" name="button">Lire la suite</button>
+                  </a>
+                  <hr>
+
+
         {% endfor %}
+
+<h1>Commentaires: </h1>
+        {% for comment in comments %}
+        <ul>
+            <li>{{ comment.author }}<li>
+              <li>{{ comment.comment}}</li>
+              <li>
+                {{ comment.post_id }}
+              </li>
+        </ul>
+        <hr>
+
+        {% endfor %}
+
     </ul>
 {% endblock %}

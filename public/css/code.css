@@ -86,7 +86,19 @@ ul {
     padding: 0;
 }
 
+.fa-pen-square {color: royalblue;}
+.fa-pen-square:hover {color: blue}
 
+.fa-times-circle {color: red;}
+.fa-times-circle:hover {color: darkred;}
+
+
+table,
+td {
+  border: 2px solid black;
+}
+
+th {background-color: red;}
 
 .picture {
     display: none;

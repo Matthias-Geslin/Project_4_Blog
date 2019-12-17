@@ -2,10 +2,6 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
-use App\Model\Factory\PDOFactory;
-use App\Model\PostsModel;
-use App\Model\CommentsModel;
-use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -17,6 +13,11 @@ use Twig\Error\SyntaxError;
 class PostController extends MainController
 {
     /**
+     * @return array
+     */
+    private $post_content = [];
+
+    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -25,29 +26,21 @@ class PostController extends MainController
     public function launchMethod()
     {
         $posts = ModelFactory::getModel('posts')->listData();
+        $comments = ModelFactory::getModel('comments')->listData();
 
         return $this->render("post.twig", [
             'posts' => $posts,
-            'createdPost' => $this->createPost()
+            'comments' => $comments
         ]);
     }
 
     /**
      * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
      */
-    public function gainPost()
+    private function postData()
     {
-        $post = ModelFactory::getModel('posts')->readData($_GET['id']);
-        $comments = ModelFactory::getModel('comments')->readData($_GET['id']);
-
-        return $this->render('post.twig',
-            [
-                'post' => $post,
-                'comments' => $comments
-            ]);
+      $this->post_content['title'] = $this->post['title'];
+      $this->post_content['content'] = $this->post['content'];
     }
 
     /**
@@ -56,53 +49,51 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function createPost()
+    public function createMethod()
     {
-        $title = filter_input(INPUT_POST, 'title');
-        $content = filter_input(INPUT_POST, 'content');
+        $title = $this->post['title'];
+        $content = $this->post['content'];
 
         if (empty($title && $content)) {
-            return $this->render('post.twig');
+            return $this->render('backend/admin.twig');
         } else {
             $createdPost = ModelFactory::getModel('posts')->createData([
                 'title' => $title,
                 'content' => $content
             ]);
-            return $this->render('post.twig', ['createdPost' => $createdPost]);
+           $this->redirect('admin', ['createdPost' => $createdPost]);
         }
     }
 
     /**
-     * @return string
-     * @throws
-     * @throws
-     * @throws
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function postDelete()
+    public function deleteMethod()
     {
-        $postDelete = ModelFactory::getModel('posts')->deleteData($_GET['id']);
+       ModelFactory::getModel('posts')->deleteData($this->get['id']);
 
-        return $this->render('post.twig', ['postDelete' => $postDelete]);
+       $this->redirect('admin');
     }
 
     /**
      * @return string
-     * @throws
-     * @throws
-     * @throws
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function postModify()
+    public function modifyMethod()
     {
-        $title = filter_input(INPUT_POST, 'title');
-        $content = filter_input(INPUT_POST, 'content');
+      if (!empty($this->post)) {
+        $this->postData();
 
-        $postUpdate = ModelFactory::getModel('posts')->updateData($_GET['id'],[
-            'title' => $title,
-            'content' => $content
-        ]);
+        ModelFactory::getModel('posts')->updateData($this->get['id'], $this->post_content);
 
-        return $this->render('post.twig', ['postUpdate' => $postUpdate]);
+        $this->redirect('admin');
     }
+    $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
 
-
+    return $this->render('backend/modifyPosts.twig', ['posts' => $posts]);
+    }
 }

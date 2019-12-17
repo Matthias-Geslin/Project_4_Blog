@@ -10,7 +10,7 @@ use Twig\Error\SyntaxError;
  * Class MainController
  * @package App\Controller
  */
-abstract class MainController
+abstract class MainController extends SuperGlobalsController
 {
     /**
      * @var Environment
@@ -23,6 +23,8 @@ abstract class MainController
      */
     public function __construct(Environment $twig)
     {
+        parent::__construct();
+
         $this->twig = $twig;
     }
 

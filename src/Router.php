@@ -23,9 +23,9 @@ class Router
     const DEFAULT_CONTROLLER    = 'DefaultController';
 
     /**
-     * Default method
+     * By Default launch method
      */
-    const DEFAULT_METHOD        = 'LaunchMethod';
+    const LAUNCH_METHOD        = 'launchMethod';
 
     /**
      * @var null
@@ -40,7 +40,7 @@ class Router
     /**
      * @var string
      */
-    private $method = self::DEFAULT_METHOD;
+    private $method = self::LAUNCH_METHOD;
 
     /**
      * Router constructor
@@ -80,7 +80,7 @@ class Router
 
         $access = explode('!', $access);
         $this->controller = $access[0];
-        $this->method = count($access) == 1 ? 'index' : $access[1];
+        $this->method = count($access) == 1 ? 'launch' : $access[1];
     }
 
     /**
@@ -104,7 +104,7 @@ class Router
         $this->method = strtolower($this->method) . 'Method';
 
         if (!method_exists($this->controller, $this->method)) {
-            $this->method = self::DEFAULT_METHOD;
+            $this->method = self::LAUNCH_METHOD;
         }
     }
 
