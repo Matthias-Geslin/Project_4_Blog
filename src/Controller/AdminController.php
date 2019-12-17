@@ -7,10 +7,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class UsersController
+ * Class AdminController
  * @package App\Controller
  */
-class UsersController extends MainController
+class AdminController extends MainController
 {
     /**
      * @return string
@@ -24,7 +24,7 @@ class UsersController extends MainController
         {
           $posts = ModelFactory::getModel('posts')->listData();
 
-          return $this->render("backend/users.twig", [
+          return $this->render("backend/admin.twig", [
               'posts' => $posts
           ]);
         }
