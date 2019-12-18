@@ -86,6 +86,9 @@ ul {
     padding: 0;
 }
 
+.fa-user-plus {color: green;}
+.fa-user-plus:hover {color: darkgreen;}
+
 .fa-pen-square {color: royalblue;}
 .fa-pen-square:hover {color: blue}
 
