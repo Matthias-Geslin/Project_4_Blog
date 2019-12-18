@@ -39,7 +39,7 @@
         <td>
           <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
             <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
-          </a>
+          </a>|
           <a href="{{ url('post!delete', {'id': post.id}) }}">
              <i class="fas fa-times-circle fa-fw fa-lg"></i>
           </a>
@@ -48,4 +48,49 @@
     {% endfor %}
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="5">Table des utilisateurs</th>
+    </tr>
+    <tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Modifications/Suppression/<a href="{{ url('admin!create') }}">
+                <i class="fas fa-user-plus fa-fw fa-lg" aria-hidden="true"></i>
+              </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for admin in admin %}
+    <tr>
+      <td>
+        {{ admin.first_name }}
+      </td>
+      <td>
+        {{ admin.last_name }}
+      </td>
+      <td>
+        {{ admin.email }}
+      </td>
+      <td>
+        {{ admin.status }}
+      </td>
+      <td>
+        <a href="{{ url('admin!modify', {'id': admin.id}) }}">
+          <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
+        </a>|
+        <a href="{{ url('admin!delete', {'id': admin.id}) }}">
+           <i class="fas fa-times-circle fa-fw fa-lg"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}
