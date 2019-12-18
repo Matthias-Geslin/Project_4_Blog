@@ -53,7 +53,7 @@ class PostController extends MainController
         $content = $this->post['content'];
 
         if (empty($title && $content)) {
-            return $this->render('backend/admin.twig');
+            $this->redirect('admin');
         } else {
             $createdPost = ModelFactory::getModel('posts')->createData([
                 'title' => $title,
@@ -93,9 +93,9 @@ class PostController extends MainController
     $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
     $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'post_id');
 
-    return $this->render('backend/modifyPosts.twig', [
-      'posts' => $posts,
-      'comments' => $comments
-  ]);
+      return $this->render('backend/modifyPosts.twig', [
+        'posts' => $posts,
+        'comments' => $comments
+      ]);
     }
 }
