@@ -95,13 +95,54 @@ ul {
 .fa-times-circle {color: red;}
 .fa-times-circle:hover {color: darkred;}
 
-
-table,
-td {
-  border: 2px solid black;
+.full-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  align-self: center;
 }
 
-th {background-color: red;}
+.full-comment {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.comment-card {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+.comment-card li {
+  display: flex;
+  justify-content: center;
+}
+
+.back-post {
+  align-self: center;
+}
+
+article {
+  margin: 5%;
+}
+
+table,
+tr {
+  border: 2px solid black;
+}
+table {
+  margin: auto;
+}
+tr {
+  display: flex;
+  flex-direction: column;
+}
+th {
+  background-color: grey;
+}
 
 .picture {
     display: none;
@@ -175,13 +216,14 @@ th {background-color: red;}
 
 /* Media mobile screen */
 @media screen and (min-width: 479px) {
-    form {
-        padding: 0 25% 0 25%;
-        margin: auto;
-        max-width: 70%;
-    }
 }
 /* Media tablet screen */
-@media screen and (min-width: 959px) {}
+@media screen and (min-width: 959px) {
+  form {
+      padding: 0 25% 0 25%;
+      margin: auto;
+      max-width: 70%;
+  }
+}
 /* Media desktop screen */
 @media screen and (min-width: 1281px) {}
