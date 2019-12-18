@@ -7,39 +7,47 @@
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
-<ul>
-    <li>
-        {{ post.id }} - {{ post.title }}
-        <br>
-        {{ post.content }}
-    </li><hr>
-    <li>
-      {% for comment in comments %}
-          <ul>
-            <li>{{ comment.author }}<li>
-            <li>{{ comment.comment}}</li>
-            <li>{{ comment.comment_date }}</li>
-          </ul>
-      {% endfor %}
-    </li>
-<li>
-  <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
-    <label for="author">Auteur</label>
-    <input type="text" name="author">
-
-    <label for="comment">Contenu du commentaire</label>
-    <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
-
-    <input type="submit">
-  </form>
-</li>
-
-
+<ul class="full-content">
+  <ul>
+      <li>
+          {{ post.id }} - {{ post.title }}
+          <br>
+          {{ post.content }}
+      </li>
+  </ul>
 
   <li>
-    <a href="{{ url('post') }}">
-      <button type="button" name="button">Retour aux chapitres</button>
-    </a>
+    <h2>Commentaires :</h2>
   </li>
+
+  <ul class="full-comment">
+        {% for comment in comments %}
+        <ul class="comment-card">
+          <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} <li>
+          <li>{{ comment.comment}}</li>
+        </ul>
+        {% endfor %}
+  </ul>
+    <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
+      <label for="author">Auteur</label>
+      <input type="text" name="author">
+
+      <label for="comment">Contenu du commentaire</label>
+      <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+
+      <input type="submit">
+    </form>
+  </li>
+
+
+
+    <li class="back-post">
+      <a href="{{ url('post') }}">
+        <button type="button"name="button">Retour aux chapitres</button>
+      </a>
+    </li>
+
+  </ul>
 </ul>
+
 {% endblock %}
