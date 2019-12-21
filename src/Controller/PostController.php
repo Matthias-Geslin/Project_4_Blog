@@ -25,7 +25,7 @@ class PostController extends MainController
      */
     public function launchMethod()
     {
-        $posts = ModelFactory::getModel('posts')->listData();
+        $posts = ModelFactory::getModel('Posts')->listData();
 
         return $this->render("post.twig", [
             'posts' => $posts
@@ -55,7 +55,7 @@ class PostController extends MainController
         if (empty($title && $content)) {
             $this->redirect('admin');
         } else {
-            $createdPost = ModelFactory::getModel('posts')->createData([
+            $createdPost = ModelFactory::getModel('Posts')->createData([
                 'title' => $title,
                 'content' => $content
             ]);
@@ -70,7 +70,7 @@ class PostController extends MainController
      */
     public function deleteMethod()
     {
-       ModelFactory::getModel('posts')->deleteData($this->get['id']);
+       ModelFactory::getModel('Posts')->deleteData($this->get['id']);
 
        $this->redirect('admin');
     }
@@ -86,12 +86,12 @@ class PostController extends MainController
       if (!empty($this->post)) {
         $this->postData();
 
-        ModelFactory::getModel('posts')->updateData($this->get['id'], $this->post_content);
+        ModelFactory::getModel('Posts')->updateData($this->get['id'], $this->post_content);
 
         $this->redirect('admin');
     }
-    $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
-    $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'post_id');
+    $posts = ModelFactory::getModel('Posts')->readData($this->get['id']);
+    $comments = ModelFactory::getModel('Comments')->listData($this->get['id'], 'post_id');
 
       return $this->render('backend/modifyPosts.twig', [
         'posts' => $posts,
