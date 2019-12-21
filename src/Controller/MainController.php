@@ -26,6 +26,7 @@ abstract class MainController extends SuperGlobalsController
         parent::__construct();
 
         $this->twig = $twig;
+        $this->twig->addFilter( new \Twig\TwigFilter('nl2br', 'nl2br', ['is_safe' => ['html']]));
     }
 
     /**
