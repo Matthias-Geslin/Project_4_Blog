@@ -22,7 +22,7 @@
 
           <td>{{ post.content | slice(0,150) }}</td>
           <td>
-            <a href="{{ url('fullPost!read', {'id': post.id}, {'id': comment.post_id}) }}">
+            <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">
               <button type="button" name="button">Lire la suite</button>
             </a>
           </td>
