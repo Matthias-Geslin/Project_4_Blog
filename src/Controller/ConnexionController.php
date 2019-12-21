@@ -40,7 +40,12 @@ class ConnexionController extends MainController
         {
           $this->redirect('admin');
         }
-        return $this->render('connexion.twig');
+        elseif ($this->session->getUserVar('status') === 'member')
+        {
+          $this->redirect('home');
+        }else{
+          return $this->render('connexion.twig');
+        }
     }
 
     /**
