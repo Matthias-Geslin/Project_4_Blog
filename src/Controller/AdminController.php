@@ -20,13 +20,17 @@ class AdminController extends MainController
      */
     public function launchMethod()
     {
-      $posts = ModelFactory::getModel('posts')->listData();
-      $admin = ModelFactory::getModel('admin')->listData();
+      if ($this->session->getUserVar('status') === 'admin')
+      {
+        $posts = ModelFactory::getModel('posts')->listData();
+        $admin = ModelFactory::getModel('admin')->listData();
 
-      return $this->render("backend/admin.twig", [
-          'posts' => $posts,
-          'admin' => $admin
-      ]);
+        return $this->render("backend/admin.twig", [
+            'posts' => $posts,
+            'admin' => $admin
+        ]);
+      }
+      return $this->render('connexion.twig');
     }
 
     /**
