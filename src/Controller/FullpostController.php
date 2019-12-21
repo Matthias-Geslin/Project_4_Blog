@@ -10,20 +10,15 @@ use Twig\Error\SyntaxError;
  * Class FullPostController
  * @package App\Controller
  */
- class FullPostController extends MainController
+class FullpostController extends MainController
 {
-  /**
-   * @return string
-   * @throws LoaderError
-   * @throws RuntimeError
-   * @throws SyntaxError
-   */
+
   public function launchMethod()
   {
-    $posts = ModelFactory::getModel('posts')->listData();
-    $comments = ModelFactory::getModel('comments')->listData();
+    $posts = ModelFactory::getModel('Posts')->listData();
+    $comments = ModelFactory::getModel('Comments')->listData();
 
-    return $this->render("fullPost.twig", [
+    return $this->render("fullpost.twig", [
         'posts' => $posts,
         'comments' => $comments
     ]);
@@ -37,8 +32,8 @@ use Twig\Error\SyntaxError;
    */
   public function readMethod()
   {
-    $posts = ModelFactory::getModel('posts')->readData($this->get['id']);
-    $comments = ModelFactory::getModel('comments')->listData($this->get['id'], 'post_id');
+    $posts = ModelFactory::getModel('Posts')->readData($this->get['id']);
+    $comments = ModelFactory::getModel('Comments')->listData($this->get['id'], 'post_id');
 
       return $this->render('fullpost.twig', [
         'post' => $posts,
