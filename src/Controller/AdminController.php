@@ -30,7 +30,9 @@ class AdminController extends MainController
             'admin' => $admin
         ]);
       }
-      return $this->render('connexion.twig');
+      else {
+          $this->redirect('home');
+      }
     }
 
     /**
