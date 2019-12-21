@@ -1,5 +1,40 @@
 <nav>
     <ul>
+    {% if session.users.status is defined and session.users.status == 'admin' %}
+        <li>
+            <a href="{{ url('home') }}" title="home">Accueil</a>
+        </li>
+        <li>
+            <a href="{{ url('post') }}" title="post">Chapitres</a>
+        </li>
+        <li>
+            <a href="{{ url('connexion') }}" title="connexion">Administration</a>
+        </li>
+        <li>Admin connecté</li>
+        <li>
+          <a href="{{ url('connexion!logout') }}">Logout</a>
+        </li>
+
+        <!-- Connexion d'un membre -->
+        {% elseif session.users.status is defined and session.users.status == 'member' %}
+        <li>
+            <a href="{{ url('home') }}" title="home">Accueil</a>
+        </li>
+        <li>
+            <a href="{{ url('post') }}" title="post">Chapitres</a>
+        </li>
+        <li>
+            <a href="{{ url('contact') }}" title="contact">Contact</a>
+        </li>
+        <li>
+          Utilisateur connecté: {{ session.users.first_name }}
+        </li>
+        <li>
+          <a href="{{ url('connexion!logout') }}">Logout</a>
+        </li>
+
+    <!-- Visiteur -->
+    {% else %}
         <li>
             <a href="{{ url('home') }}" title="home">Accueil</a>
         </li>
@@ -12,5 +47,7 @@
         <li>
             <a href="{{ url('connexion') }}" title="connexion">Connexion</a>
         </li>
+    {% endif %}
+
     </ul>
 </nav>
