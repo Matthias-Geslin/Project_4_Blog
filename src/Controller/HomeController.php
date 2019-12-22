@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
-use App\Model\PostsModel;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -21,7 +20,7 @@ class HomeController extends MainController
      */
     public function launchMethod()
     {
-        $lastPost = ModelFactory::getModel('posts')->listData();
+        $lastPost = ModelFactory::getModel('Posts')->listData();
 
         return $this->render('home.twig', ['posts' => $lastPost]);
     }
