@@ -54,13 +54,12 @@ class PostController extends MainController
 
         if (empty($title && $content)) {
             $this->redirect('admin');
-        } else {
-            $createdPost = ModelFactory::getModel('Posts')->createData([
-                'title' => $title,
-                'content' => $content
-            ]);
-           $this->redirect('admin', ['createdPost' => $createdPost]);
         }
+        $createdPost = ModelFactory::getModel('Posts')->createData([
+            'title' => $title,
+            'content' => $content
+        ]);
+        $this->redirect('admin', ['createdPost' => $createdPost]);
     }
 
     /**
