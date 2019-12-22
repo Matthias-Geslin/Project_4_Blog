@@ -35,6 +35,21 @@ class CommentsController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
+    public function deletecommentMethod()
+    {
+      $comment_id = $this->get['com_id'];
+      $post_id = $this->get['id'];
+      ModelFactory::getModel('comments')->deleteData($comment_id);
+
+      $this->commentRedirect($post_id,'!read');
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function deleteMethod()
     {
       ModelFactory::getModel('comments')->deleteData($this->get['id']);
@@ -50,11 +65,11 @@ class CommentsController extends MainController
      */
     public function createMethod()
     {
-      $author = $this->post['author'];
+      $author = $this->getUserVar('nickname');
       $comment = $this->post['comment'];
       $post_id = $this->get['id'];
 
-      if (empty($author && $comment)) {
+      if (empty($comment)) {
           $this->redirect('post');
       }
       ModelFactory::getModel('comments')->createData([
