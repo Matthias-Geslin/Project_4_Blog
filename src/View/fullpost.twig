@@ -19,26 +19,32 @@
       </li>
       <li>
         <ul class="full-comment">
-              {% for comment in comments %}
+            {% for comment in comments %}
               <ul class="comment-card">
-                <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} <li>
+                <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} </li>
                 <li>{{ comment.comment}}</li>
+              {% if session.users.nickname is defined and session.users.nickname == comment.author %}
+                <li>
+                  <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
+                     <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                  </a>
+                </li>
+              {% endif %}
               </ul>
-              {% endfor %}
+            {% endfor %}
         </ul>
       </li>
-  {% if session.users.status is defined %}
+  {% if session.users.status is defined and session.users.status == 'admin' or session.users.status == 'member' %}
       <li>
         <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
-          <label for="author">Auteur</label>
-          <input type="text" name="author" value="{{ session.users.first_name }} {{ session.users.last_name }}">
-
           <label for="comment">Contenu du commentaire</label>
           <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
 
           <input type="submit" value="Envoyer">
         </form>
       </li>
+  {% elseif session.users.status is defined and session.users.status == 'visitor' %}
+    <li>Votre compte utilisateur <strong>{{ session.users.nickname }}</strong> doit être vérifié par l'administrateur afin d'envoyer un ou des commentaires !</li>
   {% endif %}
       <li class="back-post">
         <a href="{{ url('post') }}">
