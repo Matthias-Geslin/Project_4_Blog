@@ -55,10 +55,9 @@
           <th colspan="5">Table des utilisateurs</th>
         </tr>
         <tr>
-          <th>Prénom</th>
-          <th>Nom</th>
+          <th>Surnom affiché</th>
           <th>Email</th>
-          <th>Status</th>
+          <th>Statut</th>
           <th>Modifications/Suppression/<a href="{{ url('admin!create') }}"><i class="fas fa-user-plus fa-fw fa-lg" aria-hidden="true"></i></a></th>
         </tr>
       </thead>
@@ -66,10 +65,7 @@
         {% for admin in admin %}
         <tr>
           <td>
-            {{ admin.first_name }}
-          </td>
-          <td>
-            {{ admin.last_name }}
+            {{ admin.nickname }}
           </td>
           <td>
             {{ admin.email }}
