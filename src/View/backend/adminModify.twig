@@ -2,11 +2,11 @@
 
 {% block description %}{% endblock %}
 
-{% block title %} Modifications d'un utilisateur {% endblock %}
+{% block title %} Modifications de: {{ admin.nickname }} {% endblock %}
 
 {% block content %}
-<h1> Modification d'un utilisateur {{ admin.id }}</h1>
-<form class="" action="{{ url('admin!modify', {'id': admin.id }) }}" method="post">
+<h1> Modification de: {{ admin.nickname }}</h1>
+<form action="{{ url('admin!modify', {'id': admin.id }) }}" method="post">
   <ul>
        <li>
          <label for="first_name">Prénom</label>
@@ -15,6 +15,10 @@
        <li>
            <label for="last_name">Nom</label>
            <input id="last_name" type="text" name="last_name" value="{{ admin.last_name }}" required>
+       </li>
+       <li>
+           <label for="nickname">Surnom Affiché</label>
+           <input id="nickname" type="text" name="nickname" value="{{ admin.nickname }}" required>
        </li>
        <li>
          <label for="email">Email</label>
@@ -26,7 +30,12 @@
        </li>
        <li>
          <label for="status">Statut</label>
-         <input id="status" name="status" value="{{ admin.status }}" required>
+         <select id="status" name="status" required>
+          <option value="{{ admin.status }}" {{ selected }}>{{ admin.status }}</option>
+          <option value="admin">Administrateur</option>
+          <option value="member">Membre du site</option>
+          <option value="visitor">Visiteur</option>
+         </select>
        </li>
      </ul>
 
