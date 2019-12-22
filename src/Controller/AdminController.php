@@ -45,6 +45,7 @@ class AdminController extends MainController
     {
       $this->post_content['first_name']  = $this->post['first_name'];
       $this->post_content['last_name']   = $this->post['last_name'];
+      $this->post_content['nickname']    = $this->post['nickname'];
       $this->post_content['email']       = $this->post['email'];
       $this->post_content['pass']        = $this->post['pass'];
       $this->post_content['status']      = $this->post['status'];
@@ -60,20 +61,21 @@ class AdminController extends MainController
     {
       $first_name   = $this->post['first_name'];
       $last_name    = $this->post['last_name'];
+      $nickname     = $this->post['nickname'];
       $email        = $this->post['email'];
       $pass         = $this->post['pass'];
-      $status       = $this->post['status'];
 
-      if (empty($first_name && $last_name && $email && $pass && $status)) {
+      if (empty($first_name && $last_name && $nickname && $email && $pass)) {
           return $this->render('backend/adminCreate.twig');
       }
 
+      $pass_encrypted = password_hash($pass, PASSWORD_DEFAULT);
       $createdUser = ModelFactory::getModel('admin')->createData([
           'first_name'  => $first_name,
           'last_name'   => $last_name,
+          'nickname'    => $nickname,
           'email'       => $email,
-          'pass'        => $pass,
-          'status'      => $status
+          'pass'        => $pass_encrypted
       ]);
       $this->redirect('admin', ['createdUser' => $createdUser]);
     }
@@ -94,6 +96,7 @@ class AdminController extends MainController
     {
       if (!empty($this->post)) {
         $this->postData();
+        $this->post_content['pass'] = password_hash($this->post_content['pass'], PASSWORD_DEFAULT);
 
         ModelFactory::getModel('admin')->updateData($this->get['id'], $this->post_content);
 
