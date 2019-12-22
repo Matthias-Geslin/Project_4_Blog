@@ -24,7 +24,7 @@ class ConnexionController extends MainController
          $user = ModelFactory::getModel('admin')->readData($this->post['email'], 'email');
 
           if ($this->post['pass'] ===  $user['pass']) {
-            $this->session->sessionCreate(
+            $this->sessionCreate(
                          $user['id'],
                          $user['first_name'],
                          $user['last_name'],
@@ -36,11 +36,11 @@ class ConnexionController extends MainController
               exit();
           }
       }
-      if($this->session->getUserVar('status') === 'admin')
+      if($this->getUserVar('status') === 'admin')
         {
           $this->redirect('admin');
         }
-        elseif ($this->session->getUserVar('status') === 'member')
+        elseif ($this->getUserVar('status') === 'member')
         {
           $this->redirect('home');
         }
@@ -55,7 +55,7 @@ class ConnexionController extends MainController
      */
     public function logoutMethod()
     {
-      $this->session->sessionDestroy();
+      $this->sessionDestroy();
       $this->redirect('home');
     }
 }

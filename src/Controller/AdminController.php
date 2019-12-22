@@ -20,7 +20,7 @@ class AdminController extends MainController
      */
     public function launchMethod()
     {
-      if ($this->session->getUserVar('status') === 'admin')
+      if ($this->getUserVar('status') === 'admin')
       {
         $posts = ModelFactory::getModel('posts')->listData();
         $admin = ModelFactory::getModel('admin')->listData();
