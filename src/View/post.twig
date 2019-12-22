@@ -11,7 +11,7 @@
     <table>
       <thead>
         <tr>
-          <th>Chapitre</th>
+          <th>Chapitres</th>
         </tr>
       </thead>
 
@@ -19,12 +19,9 @@
       {% for post in posts %}
         <tr>
           <td>{{ post.title }}</td>
-
           <td>{{ post.content | slice(0,150) }}</td>
           <td>
-            <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">
-              <button type="button" name="button">Lire la suite</button>
-            </a>
+            <a class="btn-grey" href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Lire la suite</a>
           </td>
         </tr>
       {% endfor %}
