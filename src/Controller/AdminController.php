@@ -30,9 +30,7 @@ class AdminController extends MainController
             'admin' => $admin
         ]);
       }
-      else {
-          $this->redirect('home');
-      }
+        $this->redirect('home');
     }
 
     /**
@@ -66,18 +64,18 @@ class AdminController extends MainController
       $pass         = $this->post['pass'];
       $status       = $this->post['status'];
 
-        if (empty($first_name && $last_name && $email && $pass && $status)) {
-            return $this->render('backend/adminCreate.twig');
-        } else {
-            $createdUser = ModelFactory::getModel('admin')->createData([
-                'first_name'  => $first_name,
-                'last_name'   => $last_name,
-                'email'       => $email,
-                'pass'        => $pass,
-                'status'      => $status
-            ]);
-           $this->redirect('admin', ['createdUser' => $createdUser]);
-        }
+      if (empty($first_name && $last_name && $email && $pass && $status)) {
+          return $this->render('backend/adminCreate.twig');
+      }
+
+      $createdUser = ModelFactory::getModel('admin')->createData([
+          'first_name'  => $first_name,
+          'last_name'   => $last_name,
+          'email'       => $email,
+          'pass'        => $pass,
+          'status'      => $status
+      ]);
+      $this->redirect('admin', ['createdUser' => $createdUser]);
     }
 
     /**
