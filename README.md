@@ -18,13 +18,12 @@ This project is a Openclassrooms Blog Project with a MVC architecture
 -   [Copyright](#copyright)  
 -   [Support on Beerpay](#support-on-beerpay)  
 
-
 ## Download
 
 [Latest Release](https://github.com/Matthias-Geslin/Project_4_Blog/releases)  
 
-`git clone https://github.com/Matthias-Geslin/Project_4_Blog.git` 
- 
+`git clone https://github.com/Matthias-Geslin/Project_4_Blog.git`
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/Matthias-Geslin/Project_4_Blog?style=plastic)
 
 ---
@@ -80,7 +79,7 @@ Code released under the MIT License
 
 ## Support on Beerpay
 
-One beer given, one beer shared ! Beers are never ended ! 
+One beer given, one beer shared ! Beers are never ended !
 
 [![Beerpay](https://beerpay.io/Matthias-Geslin/Project_4_Blog/badge.svg)](https://beerpay.io/Matthias-Geslin/Project_4_Blog)
 [![Beerpay](https://beerpay.io/Matthias-Geslin/Project_4_Blog/make-wish.svg)](https://beerpay.io/Matthias-Geslin/Project_4_Blog)
