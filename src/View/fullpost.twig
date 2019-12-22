@@ -7,12 +7,12 @@
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
+<h1>Le chapitre: {{ post.title }}</h1>
 <ul class="full-content">
-<li>
-      <li>
-          {{ post.id }} - {{ post.title }}
-          <br>
-          {{ post.content }}
+  <li>
+    {{ post.title }}
+    <br>
+    {{ post.content }}
       </li>
       <li>
         <h2>Commentaires :</h2>
