@@ -23,19 +23,28 @@ class ConnexionController extends MainController
     if (!empty($this->post['email']) && !empty($this->post['pass'])) {
          $user = ModelFactory::getModel('admin')->readData($this->post['email'], 'email');
 
-          if ($this->post['pass'] ==  $user['pass']) {
-            $this->session->sessionCreate(
+          if ($this->post['pass'] ===  $user['pass']) {
+            $this->sessionCreate(
                          $user['id'],
                          $user['first_name'],
                          $user['last_name'],
                          $user['email'],
-                         $user['pass']
+                         $user['pass'],
+                         $user['status']
                      );
               $this->redirect('admin');
               exit();
           }
       }
-        return $this->render('connexion.twig');
+      if($this->getUserVar('status') === 'admin')
+        {
+          $this->redirect('admin');
+        }
+        elseif ($this->getUserVar('status') === 'member')
+        {
+          $this->redirect('home');
+        }
+      return $this->render('connexion.twig');
     }
 
     /**
@@ -44,10 +53,9 @@ class ConnexionController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function log_out()
+    public function logoutMethod()
     {
-      $this->session->sessionDestroy();
-      $this-redirect('connexion');
-      exit();
+      $this->sessionDestroy();
+      $this->redirect('home');
     }
 }

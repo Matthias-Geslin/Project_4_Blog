@@ -7,45 +7,88 @@
 {% block title %} Admin {% endblock %}
 
 {% block content %}
-<a href="{{ url('connexion!log_out') }}">
-  <button type="button" name="log_out">Logout</button>
-</a>
 <h1>Panneau de contrôle :</h1>
-
 <form method="post" action="{{ url('post!create') }}">
-    <label for="title">Titre</label>
-    <input id="title" type="text" name="title" placeholder="Titre">
+  <label for="title">Titre</label>
+  <input id="title" type="text" name="title" placeholder="Titre">
 
-    <label for="content">Contenu du chapitre</label>
-    <textarea name="content" id="content" cols="30" rows="5"></textarea>
-    <button type="submit">Créer</button>
+  <label for="content">Contenu du chapitre</label>
+  <textarea name="content" id="content" cols="30" rows="5"></textarea>
+  <button type="submit">Créer</button>
 </form>
+<ul class="admin-container">
+  <li>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3">Recensement des chapitres</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+            <td>
+              {{ post.id }} - {{ post.title }}
+            </td>
+            <td>
+              {{ post.content }}
+            </td>
+            <td>
+              <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
+                <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
+              </a>|
+              <a href="{{ url('post!delete', {'id': post.id}) }}">
+                 <i class="fas fa-times-circle fa-fw fa-lg"></i>
+              </a>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3">Recensement des chapitres</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for post in posts %}
-    <tr>
-        <td>
-          {{ post.id }} - {{ post.title }}
-        </td>
-        <td>
-          {{ post.content }}
-        </td>
-        <td>
-          <a href="{{ url('post!modify', {'id': post.id}) }}">
-            <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
-          </a>
-          <a href="{{ url('post!delete', {'id': post.id}) }}">
-             <i class="fas fa-times-circle fa-fw fa-lg"></i>
-          </a>
-        </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  </li>
+  <li>
+
+    <table>
+      <thead>
+        <tr>
+          <th colspan="5">Table des utilisateurs</th>
+        </tr>
+        <tr>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Modifications/Suppression/<a href="{{ url('admin!create') }}"><i class="fas fa-user-plus fa-fw fa-lg" aria-hidden="true"></i></a></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for admin in admin %}
+        <tr>
+          <td>
+            {{ admin.first_name }}
+          </td>
+          <td>
+            {{ admin.last_name }}
+          </td>
+          <td>
+            {{ admin.email }}
+          </td>
+          <td>
+            {{ admin.status }}
+          </td>
+          <td>
+            <a href="{{ url('admin!modify', {'id': admin.id}) }}">
+              <i class="fas fa-pen-square fa-fw fa-lg" aria-hidden="true"></i>
+            </a>|
+            <a href="{{ url('admin!delete', {'id': admin.id}) }}">
+               <i class="fas fa-times-circle fa-fw fa-lg"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </li>
+</ul>
 {% endblock %}

@@ -8,33 +8,24 @@
 
 {% block content %}
     <h1>Voici mes chapitres :</h1>
-    <ul>
-        {% for post in posts %}
-                  <li>
-                      {{ post.id }} - {{ post.title }}
-                      <br>
-                      {{ post.content | slice(0,150) }} ...
-                  </li>
-                  <a href="{{ url('fullPost!read', {'id': post.id}, {'id': comment.post_id}) }}">
-                    <button type="button" name="button">Lire la suite</button>
-                  </a>
-                  <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>Chapitres</th>
+        </tr>
+      </thead>
 
+      <tbody>
+      {% for post in posts %}
+        <tr>
+          <td>{{ post.title }}</td>
+          <td>{{ post.content | slice(0,150) }}</td>
+          <td>
+            <a class="btn-grey" href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Lire la suite</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
 
-        {% endfor %}
-
-<h1>Commentaires: </h1>
-        {% for comment in comments %}
-        <ul>
-            <li>{{ comment.author }}<li>
-              <li>{{ comment.comment}}</li>
-              <li>
-                {{ comment.post_id }}
-              </li>
-        </ul>
-        <hr>
-
-        {% endfor %}
-
-    </ul>
 {% endblock %}

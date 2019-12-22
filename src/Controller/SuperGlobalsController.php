@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Controller\SuperGlobalsControllers\Session;
-
 /**
  * Class SuperGlobalsController
  * @package App\Controller
@@ -21,9 +19,14 @@ abstract class SuperGlobalsController
     protected $post;
 
     /**
-     * @var Session
+     * @var mixed|null
      */
-    protected $session;
+    private $session = null;
+
+    /**
+     * @var mixed
+     */
+    private $user = null;
 
     /**
      * SuperGlobalsController constructor
@@ -32,6 +35,63 @@ abstract class SuperGlobalsController
     {
         $this->get      = filter_input_array(INPUT_GET);
         $this->post     = filter_input_array(INPUT_POST);
-        $this->session  = new Session();
+
+        $this->session = filter_var_array($_SESSION);
+        if (isset($this->session['users']))
+        {
+            $this->user = $this->session['users'];
+        }
+    }
+
+    /**
+     * @param int $id
+     * @param string $first_name
+     * @param string $last_name
+     * @param string $email
+     * @param string $password
+     */
+    public function sessionCreate(int $id, string $first_name, string $last_name, string $email, string $password,string $status)
+    {
+        $_SESSION['users'] = [
+            'id' => $id,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'email' => $email,
+            'pass' => $password,
+            'status' => $status
+        ];
+    }
+
+    /**
+     * @return void
+     */
+    public function sessionDestroy()
+    {
+        $_SESSION['users'] = [];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLogged()
+    {
+        if (array_key_exists('users', $this->session)) {
+            if (!empty($this->user)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $var
+     * @return mixed
+     */
+    public function getUserVar($var)
+    {
+        if ($this->isLogged() === false) {
+            $this->user[$var] = null;
+        }
+        return $this->user[$var];
     }
 }

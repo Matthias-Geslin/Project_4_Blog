@@ -1,0 +1,49 @@
+{% extends 'layout/template.twig' %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<h1>Le chapitre: {{ post.title }}</h1>
+<ul class="full-content">
+  <li>
+    {{ post.title }}
+    <br>
+    {{ post.content }}
+      </li>
+      <li>
+        <h2>Commentaires :</h2>
+      </li>
+      <li>
+        <ul class="full-comment">
+              {% for comment in comments %}
+              <ul class="comment-card">
+                <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} <li>
+                <li>{{ comment.comment}}</li>
+              </ul>
+              {% endfor %}
+        </ul>
+      </li>
+  {% if session.users.status is defined %}
+      <li>
+        <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
+          <label for="author">Auteur</label>
+          <input type="text" name="author" value="{{ session.users.first_name }} {{ session.users.last_name }}">
+
+          <label for="comment">Contenu du commentaire</label>
+          <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+
+          <input type="submit" value="Envoyer">
+        </form>
+      </li>
+  {% endif %}
+      <li class="back-post">
+        <a href="{{ url('post') }}">
+          <button type="button"name="button">Retour aux chapitres</button>
+        </a>
+      </li>
+</ul>
+{% endblock %}
