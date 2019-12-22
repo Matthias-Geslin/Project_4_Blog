@@ -56,13 +56,12 @@ class CommentsController extends MainController
 
       if (empty($author && $comment)) {
           $this->redirect('post');
-      } else {
-           ModelFactory::getModel('comments')->createData([
-              'author' => $author,
-              'comment' => $comment,
-              'post_id' => $post_id
-          ]);
-         $this->commentRedirect($post_id,'!read');
       }
+      ModelFactory::getModel('comments')->createData([
+          'author' => $author,
+          'comment' => $comment,
+          'post_id' => $post_id
+      ]);
+      $this->commentRedirect($post_id,'!read');
     }
 }
