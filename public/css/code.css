@@ -257,7 +257,13 @@ td {
 }
 /* Media tablet screen */
 @media screen and (min-width: 959px) {
-  body {background-color: #efa7a7;}
+  article {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      align-items: center;
+      width: calc(100% - 25%);
+  }
 
   form {
       margin: auto;
