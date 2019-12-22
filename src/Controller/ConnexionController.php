@@ -23,11 +23,12 @@ class ConnexionController extends MainController
     if (!empty($this->post['email']) && !empty($this->post['pass'])) {
          $user = ModelFactory::getModel('admin')->readData($this->post['email'], 'email');
 
-          if ($this->post['pass'] ===  $user['pass']) {
+          if (password_verify($this->post['pass'], PASSWORD_DEFAULT) == password_verify($user['pass'], PASSWORD_DEFAULT)) {
             $this->sessionCreate(
                          $user['id'],
                          $user['first_name'],
                          $user['last_name'],
+                         $user['nickname'],
                          $user['email'],
                          $user['pass'],
                          $user['status']
