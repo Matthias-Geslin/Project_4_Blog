@@ -19,7 +19,7 @@
       {% for post in posts %}
         <tr>
           <td>{{ post.title }}</td>
-          <td>{{ post.content | slice(0,150) }}</td>
+          <td>{{ post.content | nl2br }}</td>
           <td>
             <a class="btn-grey" href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Lire la suite</a>
           </td>
