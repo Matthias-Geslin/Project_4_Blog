@@ -7,6 +7,7 @@
 {% block title %} Admin {% endblock %}
 
 {% block content %}
+{% if session.users.status is defined and session.users.status == 'admin' %}
 <h1>Panneau de contrôle :</h1>
 <form method="post" action="{{ url('post!create') }}">
   <label for="title">Titre</label>
@@ -87,4 +88,42 @@
     </table>
   </li>
 </ul>
+{% else %}
+<h1>Paramètres personnels</h1>
+<ul>
+  <li>
+    Bonjour <strong>{{ session.users.nickname }}</strong> !
+  </li>
+  <li>Pour modifier vos infos personnelles:</li>
+  <li>Une reconnexion est necessaire pour voir les changements.</li>
+  <li>
+    <form action="{{ url('admin!useredit', {'id': session.users.id }) }}" method="post">
+      <ul>
+           <li>
+             <label for="first_name">Prénom</label>
+             <input id="first_name" type="text" name="first_name" value="{{ session.users.first_name }}" required>
+           </li>
+           <li>
+               <label for="last_name">Nom</label>
+               <input id="last_name" type="text" name="last_name" value="{{ session.users.last_name }}" required>
+           </li>
+           <li>
+               <label for="nickname">Surnom Affiché</label>
+               <input id="nickname" type="text" name="nickname" value="{{ session.users.nickname }}" required>
+           </li>
+           <li>
+             <label for="email">Email</label>
+             <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+           </li>
+         </ul>
+         <ul>
+           <li>
+               <input type="reset" value="Reset">
+               <input type="submit" value="Mettre à jour">
+           </li>
+       </ul>
+    </form>
+  </li>
+</ul>
+{% endif %}
 {% endblock %}
