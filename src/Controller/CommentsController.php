@@ -81,4 +81,34 @@ class CommentsController extends MainController
       ]);
       $this->commentRedirect($post_id,'!read');
     }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function reportMethod()
+    {
+        $comment_id = $this->get['id'];
+
+        ModelFactory::getModel('Comments')->updateData($comment_id, ['reported' => 1]);
+
+        $commentpostid = ModelFactory::getModel('Comments')->readData($comment_id);
+
+      return $this->commentRedirect($commentpostid['post_id'],'!read');
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function notreportedMethod()
+    {
+        ModelFactory::getModel('Comments')->updateData($this->get['id'], ['reported' => 0]);
+
+        $this->redirect('admin');
+    }
 }
