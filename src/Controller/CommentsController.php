@@ -65,17 +65,19 @@ class CommentsController extends MainController
      */
     public function createMethod()
     {
-      $author = $this->getUserVar('nickname');
-      $comment = $this->post['comment'];
+      $author  = $this->getUserVar('nickname');
+      $content = $this->post['content'];
       $post_id = $this->get['id'];
+      $user_id = $this->get['id'];
 
-      if (empty($comment)) {
+      if (empty($content)) {
           $this->redirect('post');
       }
       ModelFactory::getModel('comments')->createData([
-          'author' => $author,
-          'comment' => $comment,
-          'post_id' => $post_id
+          'author'  => $author,
+          'content' => $content,
+          'post_id' => $post_id,
+          'user_id' => $user_id
       ]);
       $this->commentRedirect($post_id,'!read');
     }
