@@ -47,7 +47,6 @@ class AdminController extends MainController
       $this->post_content['last_name']   = $this->post['last_name'];
       $this->post_content['nickname']    = $this->post['nickname'];
       $this->post_content['email']       = $this->post['email'];
-      $this->post_content['pass']        = $this->post['pass'];
       $this->post_content['status']      = $this->post['status'];
     }
 
@@ -96,7 +95,6 @@ class AdminController extends MainController
     {
       if (!empty($this->post)) {
         $this->postData();
-        $this->post_content['pass'] = password_hash($this->post_content['pass'], PASSWORD_DEFAULT);
 
         ModelFactory::getModel('admin')->updateData($this->get['id'], $this->post_content);
 
