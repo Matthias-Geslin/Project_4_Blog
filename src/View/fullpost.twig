@@ -20,17 +20,36 @@
       <li>
         <ul class="full-comment">
             {% for comment in comments %}
+
+            {% if comment.reported == 1 %}
+
+            {% else %}
+
+            <li>
               <ul class="comment-card">
                 <li>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </li>
                 <li>{{ comment.content | nl2br}}</li>
-              {% if session.users.id is defined and session.users.id == comment.user_id %}
-                <li>
-                  <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
-                     <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                  </a>
-                </li>
-              {% endif %}
+
+                  {% if session.users.id is defined and session.users.id == comment.user_id %}
+                    <li>
+                      <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
+                         <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if session.users.status is defined and session.users.status != "visitor" %}
+                    <li>
+                      <a class="btn-grey" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+
               </ul>
+            </li>
+            {% endif %}
+
             {% endfor %}
         </ul>
       </li>
@@ -48,7 +67,7 @@
   {% endif %}
       <li class="back-post">
         <a href="{{ url('post') }}">
-          <button type="button"name="button">Retour aux chapitres</button>
+          <button type="button" name="button">Retour aux chapitres</button>
         </a>
       </li>
 </ul>
