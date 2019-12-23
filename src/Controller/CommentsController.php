@@ -68,7 +68,7 @@ class CommentsController extends MainController
       $author  = $this->getUserVar('nickname');
       $content = $this->post['content'];
       $post_id = $this->get['id'];
-      $user_id = $this->get['id'];
+      $user_id = $this->getUserVar('id');
 
       if (empty($content)) {
           $this->redirect('post');
