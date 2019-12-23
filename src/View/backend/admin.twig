@@ -8,6 +8,7 @@
 
 {% block content %}
 {% if session.users.status is defined and session.users.status == 'admin' %}
+<!-- Administrator connected -->
 <h1>Panneau de contrôle :</h1>
 <form method="post" action="{{ url('post!create') }}">
   <label for="title">Titre</label>
@@ -46,10 +47,40 @@
         {% endfor %}
       </tbody>
     </table>
-
   </li>
-  <li>
 
+  <li>
+    <table>
+      <thead>
+        <tr>
+          <th>Commentaires signalés<i class="fas fa-exclamation-triangle"></i></th>
+        </tr>
+        <tr>
+          <th>Auteur</th>
+          <th>Contenu du commentaire</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for comment in comments %}
+        <tr>
+
+            {% if comment.reported == 1 %}
+
+              <td>{{ comment.author }} </td>
+              <td>{{ comment.content | nl2br }} </td>
+              <td><a href="{{ url('comments!notreported', {'id': comment.id}) }}">Discard</a></td>
+              <td><hr></td>
+
+            {% endif %}
+
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+  </li>
+
+  <li>
     <table>
       <thead>
         <tr>
@@ -88,7 +119,9 @@
     </table>
   </li>
 </ul>
+
 {% else %}
+<!-- Member connected -->
 <h1>Paramètres personnels</h1>
 <ul>
   <li>
