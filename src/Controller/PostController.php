@@ -65,9 +65,18 @@ class PostController extends MainController
      */
     public function deleteMethod()
     {
-       ModelFactory::getModel('Posts')->deleteData($this->get['id']);
+      $id_post = $this->get['id'];
 
-       $this->redirect('admin');
+      $post_confirmed = ModelFactory::getModel('Comments')->listData($id_post, 'post_id');
+      
+      if (!empty($post_confirmed))
+      {
+        ModelFactory::getModel('Comments')->deleteData($id_post, 'post_id');
+      }
+
+      ModelFactory::getModel('Posts')->deleteData($id_post);
+
+      $this->redirect('admin');
     }
 
     /**
