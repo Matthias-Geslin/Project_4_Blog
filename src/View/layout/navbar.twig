@@ -28,6 +28,9 @@
               <a href="{{ url('contact') }}" title="Formulaire de contact">Contact</a>
           </li>
           <li>
+              <a href="{{ url('connexion!useredit', {'id': session.users.id }) }}" title="Page personnelle">Page personnelle</a>
+          </li>
+          <li>
             Utilisateur connecté: {{ session.users.nickname }}
           </li>
           <li>
