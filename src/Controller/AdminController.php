@@ -23,10 +23,12 @@ class AdminController extends MainController
       if ($this->getUserVar('status') === 'admin')
       {
         $posts = ModelFactory::getModel('Posts')->listData();
+        $comments = ModelFactory::getModel('Comments')->listData();
         $admin = ModelFactory::getModel('Admin')->listData();
 
         return $this->render("backend/admin.twig", [
             'posts' => $posts,
+            'comments' => $comments,
             'admin' => $admin
         ]);
       }
