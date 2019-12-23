@@ -22,13 +22,17 @@ class AdminController extends MainController
     {
       if ($this->getUserVar('status') === 'admin')
       {
-        $posts = ModelFactory::getModel('posts')->listData();
-        $admin = ModelFactory::getModel('admin')->listData();
+        $posts = ModelFactory::getModel('Posts')->listData();
+        $admin = ModelFactory::getModel('Admin')->listData();
 
         return $this->render("backend/admin.twig", [
             'posts' => $posts,
             'admin' => $admin
         ]);
+      }
+      elseif ($this->getUserVar('status') === 'member')
+      {
+        return $this->render("backend/admin.twig");
       }
         $this->redirect('home');
     }
@@ -50,6 +54,13 @@ class AdminController extends MainController
       $this->post_content['status']      = $this->post['status'];
     }
 
+    private function postDataUser()
+    {
+      $this->postData();
+
+      $this->post_content['status']      = $this->getUserVar('status');
+    }
+
     /**
      * @return string
      * @throws LoaderError
@@ -69,14 +80,30 @@ class AdminController extends MainController
       }
 
       $pass_encrypted = password_hash($pass, PASSWORD_DEFAULT);
-      $createdUser = ModelFactory::getModel('admin')->createData([
+      ModelFactory::getModel('Admin')->createData([
           'first_name'  => $first_name,
           'last_name'   => $last_name,
           'nickname'    => $nickname,
           'email'       => $email,
           'pass'        => $pass_encrypted
       ]);
-      $this->redirect('admin', ['createdUser' => $createdUser]);
+
+      // Redirection if signup form complete
+      if (isset($this->post['signup']))
+      {
+        $user = ModelFactory::getModel('Admin')->readData($this->post['email'], 'email');
+        $this->sessionCreate(
+                     $user['id'],
+                     $user['first_name'],
+                     $user['last_name'],
+                     $user['nickname'],
+                     $user['email'],
+                     $user['pass'],
+                     $user['status']
+                 );
+                 $this->redirect('home');
+      }
+      $this->redirect('admin');
     }
 
     /**
@@ -86,7 +113,7 @@ class AdminController extends MainController
      */
     public function deleteMethod()
     {
-       ModelFactory::getModel('admin')->deleteData($this->get['id']);
+       ModelFactory::getModel('Admin')->deleteData($this->get['id']);
 
        $this->redirect('admin');
     }
@@ -96,14 +123,35 @@ class AdminController extends MainController
       if (!empty($this->post)) {
         $this->postData();
 
-        ModelFactory::getModel('admin')->updateData($this->get['id'], $this->post_content);
+        ModelFactory::getModel('Admin')->updateData($this->get['id'], $this->post_content);
 
         $this->redirect('admin');
       }
-      $admin = ModelFactory::getModel('admin')->readData($this->get['id']);
+      $admin = ModelFactory::getModel('Admin')->readData($this->get['id']);
 
       return $this->render('backend/adminModify.twig', [
         'admin' => $admin
       ]);
+    }
+
+    /**
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function usereditMethod()
+    {
+      if (!empty($this->post)) {
+        $this->postDataUser();
+
+        ModelFactory::getModel('Admin')->updateData($this->get['id'], $this->post_content);
+
+        $this->redirect('admin');
+      }
+        $admin = ModelFactory::getModel('Admin')->readData($this->get['id']);
+
+        return $this->render('backend/admin.twig',[
+          'admin' => $admin
+        ]);
     }
 }
