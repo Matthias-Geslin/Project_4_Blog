@@ -33,8 +33,11 @@ class ConnexionController extends MainController
                          $user['pass'],
                          $user['status']
                      );
-              $this->redirect('admin');
-              exit();
+             if($this->getUserVar('status') === 'admin')
+               {
+                 $this->redirect('admin');
+               }
+                $this->redirect('home');
           }
       }
       if($this->getUserVar('status') === 'admin')
@@ -43,7 +46,7 @@ class ConnexionController extends MainController
         }
         elseif ($this->getUserVar('status') === 'member')
         {
-          $this->redirect('home');
+          $this->redirect('admin');
         }
         elseif ($this->getUserVar('status') === 'visitor') {
           $this->redirect('home');
