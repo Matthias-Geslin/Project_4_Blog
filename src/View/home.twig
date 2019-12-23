@@ -13,9 +13,9 @@
         <ul>
             {% for post in posts %}
                 <li class="picture fade">
-                    {{ loop.index }} - {{ post.title }}
+                    {{ post.title }}
                     <br>
-                    {{ post.content }}
+                    {{ post.content | nl2br }}
                 </li>
             {% endfor %}
         </ul>
