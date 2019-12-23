@@ -23,8 +23,8 @@
         {% for comment in comments %}
             <ul class="comment-card">
                 <li>{{ comment.author }}</li>
-                <li>{{ comment.comment}}</li>
-                <li>{{ comment.comment_date}}</li>
+                <li>{{ comment.content }}</li>
+                <li>{{ comment.created_date }}</li>
                 <li>
                   <a class="btn-grey" href="{{ url('comments!delete', {'id': comment.id}) }}">Suppression du commentaire
                      <i class="fas fa-times-circle fa-fw fa-lg"></i>
