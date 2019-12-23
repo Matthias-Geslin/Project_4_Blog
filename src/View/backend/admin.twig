@@ -31,7 +31,7 @@
               {{ post.id }} - {{ post.title }}
             </td>
             <td>
-              {{ post.content }}
+              {{ post.content|nl2br}}
             </td>
             <td>
               <a href="{{ url('post!modify', {'id': post.id}, {'id': comment.post_id}) }}">
