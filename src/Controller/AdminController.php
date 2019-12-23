@@ -115,9 +115,18 @@ class AdminController extends MainController
      */
     public function deleteMethod()
     {
-       ModelFactory::getModel('Admin')->deleteData($this->get['id']);
+      $id_User = $this->get['id'];
 
-       $this->redirect('admin');
+      $id_confirmed = ModelFactory::getModel('Comments')->listData($id_User, 'user_id');
+
+      if (!empty($id_confirmed))
+      {
+        ModelFactory::getModel('Comments')->deleteData($this->get['id'], 'user_id');
+      }
+
+      ModelFactory::getModel('Admin')->deleteData($this->get['id']);
+
+      $this->redirect('admin');
     }
 
     public function modifyMethod()
