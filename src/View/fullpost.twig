@@ -21,8 +21,8 @@
         <ul class="full-comment">
             {% for comment in comments %}
               <ul class="comment-card">
-                <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} </li>
-                <li>{{ comment.comment | nl2br}}</li>
+                <li>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </li>
+                <li>{{ comment.content | nl2br}}</li>
               {% if session.users.nickname is defined and session.users.nickname == comment.author %}
                 <li>
                   <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
@@ -38,7 +38,7 @@
       <li>
         <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
           <label for="content">Contenu du commentaire</label>
-          <textarea id="content" name="comment" rows="8" cols="80"></textarea>
+          <textarea id="content" name="content" rows="8" cols="80"></textarea>
 
           <input type="submit" value="Envoyer">
         </form>
