@@ -21,9 +21,9 @@ class ConnexionController extends MainController
     public function launchMethod()
     {
     if (!empty($this->post['email']) && !empty($this->post['pass'])) {
-         $user = ModelFactory::getModel('admin')->readData($this->post['email'], 'email');
+         $user = ModelFactory::getModel('Admin')->readData($this->post['email'], 'email');
 
-          if (password_verify($this->post['pass'], PASSWORD_DEFAULT) == password_verify($user['pass'], PASSWORD_DEFAULT)) {
+          if (password_verify($this->post['pass'], $user['pass'])) {
             $this->sessionCreate(
                          $user['id'],
                          $user['first_name'],
@@ -45,7 +45,10 @@ class ConnexionController extends MainController
         {
           $this->redirect('home');
         }
-      return $this->render('connexion.twig');
+        elseif ($this->getUserVar('status') === 'visitor') {
+          $this->redirect('home');
+        }
+        return $this->render('connexion.twig');
     }
 
     /**
