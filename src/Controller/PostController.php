@@ -49,16 +49,12 @@ class PostController extends MainController
      */
     public function createMethod()
     {
-        $title = $this->post['title'];
+        $title   = $this->post['title'];
         $content = $this->post['content'];
-
         if (empty($title && $content)) {
             $this->redirect('admin');
         }
-        $createdPost = ModelFactory::getModel('Posts')->createData([
-            'title' => $title,
-            'content' => $content
-        ]);
+        $createdPost = ModelFactory::getModel('Posts')->createIt($title,$content);
         $this->redirect('admin', ['createdPost' => $createdPost]);
     }
 
@@ -85,7 +81,7 @@ class PostController extends MainController
       if (!empty($this->post)) {
         $this->postData();
 
-        ModelFactory::getModel('Posts')->updateData($this->get['id'], $this->post_content);
+        ModelFactory::getModel('Posts')->modifyIt($this->get['id'], $this->post_content['title'],$this->post_content['content']);
 
         $this->redirect('admin');
     }
