@@ -4,9 +4,6 @@
 # DB Connection Informations (uncomment when you start using the template)
 config/db.php
 
-# DB Datas (uncomment when you start using the template)
-config/db.sql
-
 # Fonts
 public/font/
 
