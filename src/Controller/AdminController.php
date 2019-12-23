@@ -76,7 +76,9 @@ class AdminController extends MainController
       $pass         = $this->post['pass'];
 
       if (empty($first_name && $last_name && $nickname && $email && $pass)) {
+        if ($this->getUserVar('status') == 'admin'){
           return $this->render('backend/adminCreate.twig');
+        } $this->redirect('home');
       }
 
       $pass_encrypted = password_hash($pass, PASSWORD_DEFAULT);
@@ -127,11 +129,14 @@ class AdminController extends MainController
 
         $this->redirect('admin');
       }
-      $admin = ModelFactory::getModel('Admin')->readData($this->get['id']);
+      if ($this->getUserVar('status') == 'admin') {
+        $admin = ModelFactory::getModel('Admin')->readData($this->get['id']);
 
-      return $this->render('backend/adminModify.twig', [
-        'admin' => $admin
-      ]);
+        return $this->render('backend/adminModify.twig', [
+          'admin' => $admin
+        ]);
+
+      } $this->redirect('home');
     }
 
     /**
