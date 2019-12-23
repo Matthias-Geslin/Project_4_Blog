@@ -23,7 +23,7 @@
               <ul class="comment-card">
                 <li>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </li>
                 <li>{{ comment.content | nl2br}}</li>
-              {% if session.users.nickname is defined and session.users.nickname == comment.author %}
+              {% if session.users.id is defined and session.users.id == comment.user_id %}
                 <li>
                   <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
                      <i class="fas fa-times-circle fa-fw fa-lg"></i>
