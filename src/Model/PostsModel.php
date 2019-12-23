@@ -6,25 +6,21 @@ use App\Model\Factory\PDOFactory;
 
 class PostsModel extends MainModel
 {
-    /**
-     * @param $postId
-     * @return mixed
-     */
-    public function getPost($postId)
-    {
-        $req = PDOFactory::getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-        $req->execute(array($postId));
+  public function createIt($title,$content)
+  {
+    $req = PDOFactory::getPDO()->prepare('INSERT INTO Posts(title,content) VALUES(?,?)');
+    return $req->execute(array($title,$content));
+  }
 
-        return $req;
-    }
-
-    /**
-     * @return false|\PDOStatement
+      /**
+     * @param $id
+     * @param $new_title
+     * @param $new_content
      */
-    public function getLastPost()
+    public function modifyIt(string $id, string $title ,string $content)
     {
-        $req = PDOFactory::getPDO()->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
-        $req->execute();
-        return $req;
+      $content = nl2br($content);
+        $req = PDOFactory::getPDO()->prepare('UPDATE Posts SET title = ? , content = ? WHERE id = ?');
+        $req->execute(array($title,$content,$id));
     }
 }
