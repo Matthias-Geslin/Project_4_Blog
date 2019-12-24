@@ -108,6 +108,9 @@ ul {
 .fa-times-circle {color: red;}
 .fa-times-circle:hover {color: darkred;}
 
+.fa-exclamation-triangle {color: orange;}
+.fa-exclamation-triangle:hover {color: #AA8C00;}
+
 .full-content {
   display: flex;
   flex-direction: column;
