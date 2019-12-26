@@ -86,13 +86,6 @@ nav a:hover,
 footer a:hover {
   text-decoration: underline dotted;
 }
-.btn-grey {
-  padding: 2px;
-  background-color: dimgrey;
-}
-.btn-grey:link {color:ghostwhite;}
-.btn-grey:visited {color:ghostwhite;}
-.btn-grey:hover {background-color: royalblue;}
 
 ul {
     list-style-type: none;
@@ -142,10 +135,6 @@ ul {
   align-self: center;
 }
 
-article {
-  margin: 5%;
-}
-
 .admin-container {
   display: flex;
   justify-content: space-around;
@@ -161,7 +150,6 @@ article {
 
 table,
 tr {
-  border: 2px solid black;
 }
 table {
   margin: auto;
@@ -173,12 +161,36 @@ th {
 tr {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-content: center;
+  border: 2px solid black;
 }
-td {
+tbody tr {
+  margin-bottom: 5%;
+}
+td:nth-child(1),
+td:nth-child(2)
+{
   padding: 2%;
 }
+
+article table tr td:nth-child(1){
+  text-decoration: underline;
+  font-weight: bold;
+}
+article table tr td:nth-child(3) {
+  background-color: dimgrey;
+}
+
+.btn-grey {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 2% 0 2% 0;
+  border: 5px solid;
+}
+.btn-grey:link {color:ghostwhite;}
+.btn-grey:visited {color:ghostwhite;}
+.btn-grey:hover {background-color: #828282;}
+
 
 
 
@@ -189,8 +201,9 @@ td {
 /*//////////*/
 /* Controls */
 .controls {
-    justify-content: space-between;
-    border: none;
+    justify-content: space-around;
+    border: 5px solid #828282;
+    background-color: dimgrey;
 }
 
 .controls input {
@@ -203,27 +216,26 @@ td {
 .pause,
 .play {
     cursor: pointer;
-    width: auto;
     padding: 16px;
     transition: 0.6s ease;
     border-radius: 10px;
     user-select: none;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover,
 .next:hover,
 .pause:hover,
 .play:hover
 {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .prev-mvt,
 .next-mvt,
 .pause-mvt,
 .play-mvt {
-    width: 40px;
+    width: 100%;
+    color: ghostwhite;
 }
 
 /* Fading animation */
@@ -232,7 +244,7 @@ td {
     -webkit-animation: fade 1.5s;
 }
 
-/*~~~~##~~~~*/
+/*/////////*/
 /* Helpers */
 .flex {
     display: flex;
@@ -250,27 +262,45 @@ td {
     border-radius: 5%;
 }
 
-
+img {
+  width: 100%;
+}
 
 /* Media mobile screen */
 @media screen and (min-width: 479px) {
   .comment-card {
     margin: 1%;
   }
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto;
+
+  }
+  .controls {
+    margin: auto;
+    width: 35%;
+  }
 }
 /* Media tablet screen */
 @media screen and (min-width: 959px) {
   article {
-      display: flex;
-      flex-direction: column;
-      margin: auto;
-      align-items: center;
-      width: calc(100% - 25%);
+    width: calc(100% - 25%);
+  }
+  .posts table tbody {
+    /* display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 25%;
+    height: 25%;
+    margin: auto; */
   }
 
   form {
       margin: auto;
-      width: 50%;
+      /* width: 50%; */
     }
 
   .full-comment {
@@ -281,6 +311,9 @@ td {
     border: 0px;
   }
 
+  .controls {
+    justify-content: space-between;
+  }
 }
 /* Media desktop screen */
 @media screen and (min-width: 1281px) {
