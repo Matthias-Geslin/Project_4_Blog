@@ -19,7 +19,7 @@ class PostsModel extends MainModel
      */
     public function modifyIt(string $id, string $title ,string $content)
     {
-      $content = nl2br($content);
+        $content = html_entity_decode($content);
         $req = PDOFactory::getPDO()->prepare('UPDATE Posts SET title = ? , content = ? WHERE id = ?');
         $req->execute(array($title,$content,$id));
     }
