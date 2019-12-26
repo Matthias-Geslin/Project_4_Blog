@@ -7,19 +7,19 @@
 {% block title %} Billet Simple pour l'Alaska - Jean Forteroche {% endblock %}
 
 {% block content %}
+<h1>Voici mon dernier chapitre :</h1>
 <article>
-    <h1>Voici mon dernier chapitre :</h1>
-      <div>
-        <ul>
-            {% for post in posts %}
-                <li class="picture fade">
-                    {{ post.title }}
-                    <br>
-                    {{ post.content | nl2br }}
-                </li>
-            {% endfor %}
-        </ul>
-      </div>
+  <div>
+    <ul>
+        {% for post in posts %}
+            <li class="picture fade">
+                {{ post.title }}
+                <br>
+                {{ post.content | nl2br }}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
 
 
   <!--    Controls    -->
@@ -45,7 +45,6 @@
     </label>
   </div>
 </article>
-
 {% endblock %}
 
 {% block script %}
