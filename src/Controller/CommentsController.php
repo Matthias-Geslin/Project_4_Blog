@@ -35,6 +35,21 @@ class CommentsController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
+    public function deletecommentMethod()
+    {
+      $comment_id = $this->get['com_id'];
+      $post_id = $this->get['id'];
+      ModelFactory::getModel('comments')->deleteData($comment_id);
+
+      $this->commentRedirect($post_id,'!read');
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function deleteMethod()
     {
       ModelFactory::getModel('comments')->deleteData($this->get['id']);
@@ -50,18 +65,50 @@ class CommentsController extends MainController
      */
     public function createMethod()
     {
-      $author = $this->post['author'];
-      $comment = $this->post['comment'];
+      $author  = $this->getUserVar('nickname');
+      $content = $this->post['content'];
       $post_id = $this->get['id'];
+      $user_id = $this->getUserVar('id');
 
-      if (empty($author && $comment)) {
+      if (empty($content)) {
           $this->redirect('post');
       }
       ModelFactory::getModel('comments')->createData([
-          'author' => $author,
-          'comment' => $comment,
-          'post_id' => $post_id
+          'author'  => $author,
+          'content' => $content,
+          'post_id' => $post_id,
+          'user_id' => $user_id
       ]);
       $this->commentRedirect($post_id,'!read');
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function reportMethod()
+    {
+        $comment_id = $this->get['id'];
+
+        ModelFactory::getModel('Comments')->updateData($comment_id, ['reported' => 1]);
+
+        $commentpostid = ModelFactory::getModel('Comments')->readData($comment_id);
+
+      return $this->commentRedirect($commentpostid['post_id'],'!read');
+    }
+
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function notreportedMethod()
+    {
+        ModelFactory::getModel('Comments')->updateData($this->get['id'], ['reported' => 0]);
+
+        $this->redirect('admin');
     }
 }

@@ -8,21 +8,45 @@
 
 {% block content %}
     <h1>Formulaire de contact</h1>
-    <form method="post" action="#">
-        <label for="FirstName">Votre Prénom</label>
-        <input type="text" id="FirstName" placeholder="Prénom" name="FirstName" required>
+    <form method="post" action="{{ url('contact!mail') }}">
 
-        <label for="LastName">Votre nom</label>
-        <input type="text" id="LastName" placeholder="Nom" name="LastName" required>
+        {% if session.users.status is defined %}
 
-        <label for="Mail">E-mail</label>
-        <input type="email" id="Mail" placeholder="Mail" name="Mail" required>
+        <label for="first_name">Votre Prénom</label>
+        <input id="first_name" type="text" name="first_name" value="{{ session.users.first_name }}" required>
 
-        <label for="object">L'objet du message</label>
-        <input type="text" id="object" placeholder="Objet du message" required>
+        <label for="last_name">Votre nom</label>
+        <input id="last_name" type="text" name="last_name" value="{{ session.users.last_name }}" required>
 
-        <label for="message">Votre Message</label>
-        <textarea id="message" placeholder="Votre Message" rows="4" required></textarea>
-        <input type="submit">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+
+        <label for="subject">L'objet du message</label>
+        <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
+
+        <label for="content">Votre Message</label>
+        <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
+        <input type="submit" value="Envoyer">
+
+        {% else %}
+
+        <label for="first_name">Votre Prénom</label>
+        <input id="first_name" type="text" placeholder="Prénom" name="first_name" required>
+
+        <label for="last_name">Votre nom</label>
+        <input id="last_name" type="text" placeholder="Nom" name="last_name" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="Mail" name="email" required>
+
+        <label for="subject">L'objet du message</label>
+        <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
+
+        <label for="content">Votre Message</label>
+        <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
+        <input type="submit" value="Envoyer">
+
+        {% endif %}
+
     </form>
 {% endblock %}

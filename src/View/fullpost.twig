@@ -8,42 +8,69 @@
 
 {% block content %}
 <h1>Le chapitre: {{ post.title }}</h1>
-<ul class="full-content">
+<article>
+  <ul class="full-content">
   <li>
     {{ post.title }}
     <br>
-    {{ post.content }}
+    {{ post.content | nl2br }}
       </li>
       <li>
         <h2>Commentaires :</h2>
       </li>
       <li>
         <ul class="full-comment">
-              {% for comment in comments %}
+            {% for comment in comments %}
+
+            {% if comment.reported == 1 %}
+
+            {% else %}
+
+            <li>
               <ul class="comment-card">
-                <li>Écrit par : {{ comment.author }}, le {{ comment.comment_date }} <li>
-                <li>{{ comment.comment}}</li>
+                <li>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </li>
+                <li>{{ comment.content | nl2br}}</li>
+
+                  {% if session.users.id is defined and session.users.id == comment.user_id %}
+                    <li>
+                      <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
+                         <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if session.users.status is defined and session.users.status != "visitor" %}
+                    <li>
+                      <a class="btn-grey" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+
               </ul>
-              {% endfor %}
+            </li>
+            {% endif %}
+
+            {% endfor %}
         </ul>
       </li>
-  {% if session.users.status is defined %}
+  {% if session.users.status is defined and session.users.status == 'admin' or session.users.status == 'member' %}
       <li>
         <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
-          <label for="author">Auteur</label>
-          <input type="text" name="author" value="{{ session.users.first_name }} {{ session.users.last_name }}">
-
-          <label for="comment">Contenu du commentaire</label>
-          <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+          <label for="content">Contenu du commentaire</label>
+          <textarea id="content" name="content" rows="8" cols="80"></textarea>
 
           <input type="submit" value="Envoyer">
         </form>
       </li>
+  {% elseif session.users.status is defined and session.users.status == 'visitor' %}
+    <li>Votre compte utilisateur <strong>{{ session.users.nickname }}</strong> doit être vérifié par l'administrateur afin d'envoyer un ou des commentaires !</li>
   {% endif %}
       <li class="back-post">
         <a href="{{ url('post') }}">
-          <button type="button"name="button">Retour aux chapitres</button>
+          <button type="button" name="button">Retour aux chapitres</button>
         </a>
       </li>
 </ul>
+</article>
 {% endblock %}

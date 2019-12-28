@@ -50,15 +50,16 @@ abstract class SuperGlobalsController
      * @param string $email
      * @param string $password
      */
-    public function sessionCreate(int $id, string $first_name, string $last_name, string $email, string $password,string $status)
+    public function sessionCreate(int $id, string $first_name, string $last_name, string $nickname, string $email, string $password,string $status)
     {
         $_SESSION['users'] = [
-            'id' => $id,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email,
-            'pass' => $password,
-            'status' => $status
+            'id'          => $id,
+            'first_name'  => $first_name,
+            'last_name'   => $last_name,
+            'nickname'    => $nickname,
+            'email'       => $email,
+            'pass'        => $password,
+            'status'      => $status
         ];
     }
 
