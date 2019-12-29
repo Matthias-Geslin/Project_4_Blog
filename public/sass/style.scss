@@ -20,6 +20,7 @@ header {
   flex-direction: column;
   box-sizing: content-box;
   background-color: $dark-blue;
+  border-bottom: 5px solid $light-grey;
 
   h1 {
     text-align: center;
@@ -42,9 +43,7 @@ header {
   blockquote {
     text-align: center;
     font-style: italic;
-    background-color: $light-grey;
-    border-radius: 15px 0;
-    box-shadow: 3px 5px;
+    color: $white;
     position: relative;
     quotes:  "\201C""\201D""\2018""\2019";
 
@@ -66,31 +65,109 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     li {
       padding: 5px 15px 5px 15px;
-      border-radius: 15px 0;
-      box-shadow: 2px 3px $light-blue;
+
     }
   }
 
   a {
     text-decoration: none;
-
-    &:link {color: $white;}
+  font-family: 'Quicksand', sans-serif, cursive;
+    &:link {color: $grey;}
     &:visited {color:$white;}
-    &:hover {color: $dark-grey;}
+    &:hover {}
   }
 }
 
+/* Section style part */
 section {
   display: flex;
   flex-direction: column;
+  font-family: 'Quicksand', sans-serif, cursive;
 
-  h2 {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Righteous', sans-serif, cursive;
+
     text-align: center;
+  }
+
+  .comment-card {
+      padding: 5px;
+      margin: 5px;
+      box-shadow: 0 5px 1px 0px $light-blue;
+      border-radius: 15px 0;
+      text-align: center;
+
+    li {
+      margin: 15px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+    .btn-delete {
+      background-color: $red;
+      border-radius: 5px;
+      padding: 5px;
+
+      &:hover {
+      color: $red;
+      background-color: $white;
+
+        .fa-times-circle {
+          color: $red;
+        }
+      }
+
+      .fa-times-circle {
+        color: $white;
+      }
+
+    }
+
+    .btn-report {
+      background-color: $orange;
+      border-radius: 5px;
+      padding: 5px;
+
+      &:hover {
+        color: $orange;
+        background-color: $white;
+
+        .fa-exclamation-triangle {
+          color: $orange;
+        }
+      }
+
+      .fa-exclamation-triangle {
+        color: $white;
+      }
+    }
+  }
+
+form {
+    ul {
+      display: flex;
+      flex-direction: column;
+
+      li {
+        display: flex;
+        flex-direction: column;
+
+        label {
+
+        }
+      }
+    }
   }
 }
 
+/* Table style default */
 table {
   display: flex;
   flex-direction: column;
@@ -99,13 +176,13 @@ table {
   tr {
     display: flex;
     td {
-      text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
     }
   }
 }
 
+/* Article style part */
 article {
 
   table {
@@ -117,6 +194,7 @@ article {
         border-radius: 15px 0;
         box-shadow: 0px 5px 1px 1px $dark-blue;
         margin: 5% 0 5% 0;
+        background-color: $light-grey;
 
         td {
           width: 100%;
@@ -136,24 +214,28 @@ article {
               border: solid;
               border-width: 2px 2px 0 0;
               border-radius: 10px 0;
-              color: $dark-violet;
+              border-color: $dark-blue;
               user-select: none;
 
-              &:link {color: $dark-violet;}
-              &:visited {color:$dark-violet;}
+              &:link {color: $white;}
+              &:visited {color:$white;}
               &:hover {
                 color: $white;
-                border-color: $dark-violet;
-                background: rgb(255,255,255);
-                background: -webkit-linear-gradient(5deg, rgba(255,255,255,1) 0%, rgba(80,30,115,1) 70%);
-                background: -o-linear-gradient(5deg, rgba(255,255,255,1) 0%, rgba(80,30,115,1) 70%);
-                background: linear-gradient(5deg, rgba(255,255,255,1) 0%, rgba(80,30,115,1) 70%);
+                border-color: $white;
+                background: -webkit-linear-gradient(3deg, rgba(40, 95, 130, 1.0) 55%, rgba(255,255,255,1) 90%);
+                background: -o-linear-gradient(3deg, rgba(40, 95, 130, 1.0) 55%, rgba(255,255,255,1) 90%);
+                background: linear-gradient(3deg, rgba(40, 95, 130, 1.0) 55%, rgba(255,255,255,1) 90%);
               }
             }
           }
         }
       }
     }
+  }
+
+  h3 {
+    color: $dark-red;
+    text-decoration: underline;
   }
 }
 
@@ -173,8 +255,6 @@ article {
     transition: 0.6s ease;
     border-radius: 10px;
     user-select: none;
-
-
   }
   .prev:hover {
     border-radius:0 15px;
@@ -197,4 +277,16 @@ article {
 .fade {
     animation: fade 1.5s;
     -webkit-animation: fade 1.5s;
+}
+
+footer {
+  border-top: 5px solid $light-grey;
+
+  h4 {
+    font-family: 'Righteous', sans-serif, cursive;
+  }
+
+  nav ul li:nth-child(n) {
+    border-bottom: 3px solid $light-grey;
+  }
 }
