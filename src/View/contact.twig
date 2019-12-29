@@ -8,7 +8,7 @@
 
 {% block content %}
     <h1>Formulaire de contact</h1>
-    <form method="post" action="{{ url('contact!mail') }}">
+    <form method="post" action="{{ url('contact!mail') }}" enctype="text/plain">
 
         {% if session.users.status is defined %}
 
