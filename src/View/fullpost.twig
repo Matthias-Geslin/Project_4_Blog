@@ -7,7 +7,7 @@
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
-<h1>Le chapitre: {{ post.title }}</h1>
+<h2>Lecture du chapitre</h2>
 
     <article>
       <h3>{{ post.title }}</h3>
@@ -20,21 +20,29 @@
         {% if comment.reported == 1 %}
         <!-- Only comments unreported rendered -->
         {% else %}
-        <p>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </p>
-        <p>{{ comment.content | nl2br}}</p>
-                <div>
-                  {% if session.users.id is defined and session.users.id == comment.user_id %}
-                      <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
-                      <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                      </a>
-                  {% endif %}
+          <ul class="comment-card bg-color-blue">
+            <li>
+              <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+              <p>{{ comment.content | nl2br}}</p>
+            </li>
 
-                  {% if session.users.status is defined and session.users.status != "visitor" %}
-                    <a class="btn-grey" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
-                    <i class="fas fa-exclamation-triangle"></i>
-                    </a>
-                  {% endif %}
-                </div>
+            {% if session.users.id is defined and session.users.id == comment.user_id %}
+
+            <li>
+              <a class="btn-delete" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
+                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+              </a>
+            </li>
+            {% endif %}
+
+            {% if session.users.status is defined and session.users.status != "visitor" %}
+            <li>
+              <a class="btn-report" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+                <i class="fas fa-exclamation-triangle"></i>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
         {% endif %}
         {% endfor %}
     </section>
