@@ -9,15 +9,12 @@
 {% block content %}
 <h2>Voici mon dernier chapitre</h2>
 <article>
-    <ul>
         {% for post in posts %}
-            <li class="picture fade">
-                {{ post.title }}
-                <br>
-                {{ post.content | nl2br }}
-            </li>
+            <section class="picture fade">
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.content | nl2br }}</p>
+            </section>
         {% endfor %}
-    </ul>
 </article>
 
 
