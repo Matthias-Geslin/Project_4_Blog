@@ -7,23 +7,17 @@
 {% block title %} Voici tout mes chapitres {% endblock %}
 
 {% block content %}
-    <h1>Voici mes chapitres :</h1>
+    <h2>Voici mes chapitres </h2>
     <article>
       <table>
         <caption>Chapitres</caption>
-        <thead>
-          <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Contenu</th>
-          </tr>
-        </thead>
         <tbody>
           {% for post in posts %}
           <tr>
             <td>{{ post.title }}</td>
             <td>{{ post.content | nl2br }}</td>
             <td>
-              <a class="btn-grey" href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Commenter ce chapitre</a>
+              <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Commenter ce chapitre</a>
             </td>
           </tr>
           {% endfor %}
