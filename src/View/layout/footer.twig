@@ -1,29 +1,26 @@
 <footer>
     <ul>
-        <li>
-            <h2>Me retrouver sur :</h2>
-        </li>
-
+        <li><h4>Me retrouver sur :</h4></li>
         <li><a href="https://github.com/Matthias-Geslin/Project_4_Blog">Github <i class="fab fa-github"></i></a></li>
-
         <li><a href="https://twitter.com/Matthiasgeslin">Twitter <i class="fab fa-twitter"></i></a></li>
     </ul>
     <ul>
-        <li><h2>Plan du site :</h2></li>
-        {% if session.users.status is defined and session.users.status == 'admin' %}
-            <li><a href="{{ url('home') }}" title="home">Accueil</a></li>
-            <li><a href="{{ url('post') }}" title="post">Chapitres</a></li>
-            <li><a href="{{ url('connexion') }}" title="connexion">Administration</a></li>
-            <li><a href="{{ url('connexion!logout') }}">Logout</a></li>
+        <li><h4>Plan du site :</h4></li>
+      <!-- Connexion of admin -->
+      {% if session.users.status is defined and session.users.status == 'admin' %}
+          <li><a href="{{ url('home') }}" title="home">Accueil</a></li>
+          <li><a href="{{ url('post') }}" title="post">Chapitres</a></li>
+          <li><a href="{{ url('connexion') }}" title="connexion">Administration</a></li>
+          <li><a href="{{ url('connexion!logout') }}">Logout</a></li>
 
-      <!-- Connexion d'un membre -->
+      <!-- Connexion of member -->
       {% elseif session.users.status is defined and session.users.status == 'member' %}
-      <li><a href="{{ url('home') }}" title="home">Accueil</a></li>
-      <li><a href="{{ url('post') }}" title="post">Chapitres</a></li>
-      <li><a href="{{ url('contact') }}" title="contact">Contact</a></li>
-      <li><a href="{{ url('connexion!logout') }}">Logout</a></li>
+        <li><a href="{{ url('home') }}" title="home">Accueil</a></li>
+        <li><a href="{{ url('post') }}" title="post">Chapitres</a></li>
+        <li><a href="{{ url('contact') }}" title="contact">Contact</a></li>
+        <li><a href="{{ url('connexion!logout') }}">Logout</a></li>
 
-      <!-- Visiteur -->
+      <!-- Visitor or not connected -->
       {% else %}
         <li><a href="{{ url('home') }}" title="home">Accueil</a></li>
         <li><a href="{{ url('post') }}" title="post">Chapitres</a></li>
