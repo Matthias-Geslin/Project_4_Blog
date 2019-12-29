@@ -7,9 +7,8 @@
 {% block title %} Billet Simple pour l'Alaska - Jean Forteroche {% endblock %}
 
 {% block content %}
-<h1>Voici mon dernier chapitre :</h1>
+<h2>Voici mon dernier chapitre :</h2>
 <article>
-  <div>
     <ul>
         {% for post in posts %}
             <li class="picture fade">
@@ -19,7 +18,7 @@
             </li>
         {% endfor %}
     </ul>
-  </div>
+</article>
 
 
   <!--    Controls    -->
@@ -44,7 +43,6 @@
         <i class="fa fa-caret-right next-mvt"></i>
     </label>
   </div>
-</article>
 {% endblock %}
 
 {% block script %}
