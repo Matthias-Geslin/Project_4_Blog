@@ -9,18 +9,18 @@
 {% block content %}
     <h2>Voici mes chapitres </h2>
     <article>
-      <table>
-        <tbody>
-          {% for post in posts %}
-          <tr>
-            <td>{{ post.title }}</td>
-            <td>{{ post.content | nl2br }}</td>
-            <td>
-              <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Commenter ce chapitre</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <table>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.content | nl2br }}</td>
+                    <td>
+                        <a href="{{ url('fullpost!read', {'id': post.id}, {'id': comment.post_id}) }}">Commenter ce chapitre</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </article>
 {% endblock %}
