@@ -7,11 +7,13 @@
 {% block title %} Billet Simple pour l'Alaska - Jean Forteroche {% endblock %}
 
 {% block content %}
-    <h2>Voici mon dernier chapitre</h2>
+    <h2>Accueil du blog</h2>
     <article>
+      <h3>Voici mon dernier chapitre</h3>
+
         {% for post in posts %}
             <section class="picture fade">
-                <h3>{{ post.title }}</h3>
+                <h4>{{ post.title }}</h4>
                 <p>{{ post.content | nl2br }}</p>
             </section>
         {% endfor %}
@@ -20,22 +22,22 @@
 
     <!--    Controls    -->
     <div class="controls flex">
-        <input type="button"  id="prev">
+        <input type="button"  id="prev" value="Reculer">
         <label for="prev" id="prev-lb" class="prev">
             <i class="fa fa-chevron-left prev-mvt"></i>
         </label>
 
-        <input type="button" id="play-btn">
+        <input type="button" id="play-btn" value="Lancer">
         <label for="play-btn" id="play" class="play">
             <i class="fa fa-play play-mvt"></i>
         </label>
 
-        <input type="button" id="pause-btn">
+        <input type="button" id="pause-btn" value="Pause">
         <label for="pause-btn" id="pause" class="pause hide">
             <i class="fa fa-pause pause-mvt"></i>
         </label>
 
-        <input type="button" id="next">
+        <input type="button" id="next" value="Avancer">
         <label for="next" id="next-lb" class="next">
             <i class="fas fa-chevron-right next-mvt"></i>
         </label>
