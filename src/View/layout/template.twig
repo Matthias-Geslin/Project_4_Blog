@@ -8,32 +8,29 @@
 
     <title>{% block title %}{% endblock %}</title>
 
-    <link rel="canonical" href="#">
-    <link rel="icon" href="#" type="image/x-icon">
+    <link rel="canonical" href="{% block canonical %}https://blog.matthias-geslin.fr{% endblock %}">
 
-    <meta name="description"                content="{{ block('description') }}">
-    <meta name="author"                     content="#">
-    <meta name="copyright"                  content="#">
-    <meta name="google-site-verification"   content="#">
+    <meta name="description"            content="{{ block('description') }}">
+    <meta name="author"                 content="Matthias Geslin">
+    <meta name="copyright"              content="MIT">
 
-    <meta property="og:title"       content="#">
-    <meta property="og:type"        content="#">
-    <meta property="og:url"         content="#">
-    <meta property="og:image"       content="#">
-    <meta property="og:description" content="#">
-    <meta property="fb:app_id"      content="#">
+    <meta property="og:type"            content="blog">
+    <meta property="og:url"             content="{{ block('canonical') }}">
+    <meta property="og:title"           content="{{ block('title') }}">
+    <meta property="og:description"     content="{{ block('description') }}">
+    <meta property="og:image"           content="{% block image %}https://blog.matthias-geslin.fr/img/roman.jpg{% endblock %}">
 
-    <meta name="twitter:card"           content="#">
-    <meta name="twitter:site"           content="#">
-    <meta name="twitter:title"          content="#">
-    <meta name="twitter:description"    content="#">
-    <meta name="twitter:creator"        content="#">
-    <meta name="twitter:image"          content="#">
+    <meta name="twitter:card"           content="summary">
+    <meta name="twitter:site"           content="{{ block('canonical') }}">
+    <meta name="twitter:title"          content="{{ block('title') }}">
+    <meta name="twitter:description"    content="{{ block('description') }}">
+    <meta name="twitter:image"          content="{{ block('image') }}">
+    <meta name="twitter:creator"        content="@Matthiasgeslin">
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand%7cRighteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../public/sass/style.css">
-    <link rel="stylesheet" href="../public/css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 
 <body>
@@ -41,7 +38,7 @@
 <header>
     <h1 class="transfo-upp">Blog de Jean Forteroche</h1>
     <figure>
-        <img src="../public/img/roman.jpg" alt="Roman Billet simple pour l'Alaska">
+        <img src="img/roman.jpg" alt="Roman Billet simple pour l'Alaska">
         <figcaption>Billet simple pour l'Alaska</figcaption>
     </figure>
     <blockquote>Le bonheur est parfois caché dans l'inconnu.</blockquote>
