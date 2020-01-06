@@ -1,33 +1,33 @@
-<footer>
-  <nav class="bg-color-blue">
-    <ul>
-        <li class="large-l-blue"><h4>Me retrouver sur :</h4></li>
-        <li><a href="https://github.com/Matthias-Geslin/Project_4_Blog" title="Github">Github <i class="fab fa-github"></i></a></li>
-        <li><a href="https://twitter.com/Matthiasgeslin" title="Twitter">Twitter <i class="fab fa-twitter"></i></a></li>
-    </ul>
-    <ul>
-        <li class="large-l-blue"><h4>Plan du site :</h4></li>
-      <!-- Connexion of admin -->
-      {% if session.users.status is defined and session.users.status == 'admin' %}
-          <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
-          <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
-          <li><a href="{{ url('connexion') }}" title="Administration">Administration</a></li>
-          <li><a href="{{ url('connexion!logout') }}">Déconnexion</a></li>
+<footer id="footer">
+    <nav class="bg-color-blue">
+        <ul>
+            <li class="large-l-blue"><h4>Me retrouver sur :</h4></li>
+            <li><a href="https://github.com/Matthias-Geslin/Project_4_Blog" title="Github">Github <i class="fab fa-github"></i></a></li>
+            <li><a href="https://twitter.com/Matthiasgeslin" title="Twitter">Twitter <i class="fab fa-twitter"></i></a></li>
+        </ul>
+        <ul>
+            <li class="large-l-blue"><h4>Plan du site :</h4></li>
+            <!-- Connexion of admin -->
+            {% if session.users.status is defined and session.users.status == 'admin' %}
+                <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
+                <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
+                <li><a href="{{ url('connexion') }}" title="Administration">Administration</a></li>
+                <li><a href="{{ url('connexion!logout') }}">Déconnexion</a></li>
 
-      <!-- Connexion of member -->
-      {% elseif session.users.status is defined and session.users.status == 'member' %}
-        <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
-        <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
-        <li><a href="{{ url('contact') }}" title="Contact">Contact</a></li>
-        <li><a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a></li>
+                <!-- Connexion of member -->
+            {% elseif session.users.status is defined and session.users.status == 'member' %}
+                <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
+                <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
+                <li><a href="{{ url('contact') }}" title="Contact">Contact</a></li>
+                <li><a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a></li>
 
-      <!-- Visitor or not connected -->
-      {% else %}
-        <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
-        <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
-        <li><a href="{{ url('contact') }}" title="Contact">Contact</a></li>
-        <li><a href="{{ url('connexion') }}" title="Connexion">Connexion</a></li>
-      {% endif %}
-    </ul>
-  </nav>
+                <!-- Visitor or not connected -->
+            {% else %}
+                <li><a href="{{ url('home') }}" title="Accueil">Accueil</a></li>
+                <li><a href="{{ url('post') }}" title="Chapitres">Chapitres</a></li>
+                <li><a href="{{ url('contact') }}" title="Contact">Contact</a></li>
+                <li><a href="{{ url('connexion') }}" title="Connexion">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </footer>
