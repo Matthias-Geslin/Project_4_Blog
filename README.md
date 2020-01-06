@@ -32,7 +32,7 @@ This project is a Openclassrooms Blog Project with a MVC architecture
 
 The blog has continuous support !
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2019)](https://github.com/Matthias-Geslin/Project_4_Blog)
+[![Maintenance](https://img.shields.io/maintenance/yes/2020)](https://github.com/Matthias-Geslin/Project_4_Blog)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Matthias-Geslin/Project_4_Blog/dev)](https://github.com/Matthias-Geslin/Project_4_Blog/commits/dev)
 
 ---
