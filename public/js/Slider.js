@@ -103,7 +103,7 @@ Slider.prototype.stop = function () {
 // Manual slide selection
 Slider.prototype.slide = function (index) {
     if (index <= 0 && index >= this.total) {
-        alert("Index " + index + " doesn't exist. Available : 0 - " + this.total);
+        alert("Aucun ou un seul chapitre visible pour le slider.");
     } else {
         this.stop();
         for (let s = 0; s <= this.total; s++) {
