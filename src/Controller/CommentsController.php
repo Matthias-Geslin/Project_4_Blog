@@ -20,12 +20,12 @@ class CommentsController extends MainController
      */
     public function launchMethod()
     {
-      $users = ModelFactory::getModel('users')->listData();
-      $comments = ModelFactory::getModel('comments')->listData();
+      $admin = ModelFactory::getModel('Admin')->listData();
+      $comments = ModelFactory::getModel('Comments')->listData();
 
       return $this->render("post.twig", [
         'comments' => $comments,
-        'users'   => $users
+        'admin'   => $admin
       ]);
     }
 
@@ -39,7 +39,7 @@ class CommentsController extends MainController
     {
       $comment_id = $this->get['com_id'];
       $post_id = $this->get['id'];
-      ModelFactory::getModel('comments')->deleteData($comment_id);
+      ModelFactory::getModel('Comments')->deleteData($comment_id);
 
       $this->commentRedirect($post_id,'!read');
     }
@@ -52,7 +52,7 @@ class CommentsController extends MainController
      */
     public function deleteMethod()
     {
-      ModelFactory::getModel('comments')->deleteData($this->get['id']);
+      ModelFactory::getModel('Comments')->deleteData($this->get['id']);
 
       $this->redirect('admin');
     }
@@ -73,7 +73,7 @@ class CommentsController extends MainController
       if (empty($content)) {
           $this->redirect('post');
       }
-      ModelFactory::getModel('comments')->createData([
+      ModelFactory::getModel('Comments')->createData([
           'author'  => $author,
           'content' => $content,
           'post_id' => $post_id,
