@@ -7,10 +7,10 @@
 {% block title %} Me contacter {% endblock %}
 
 {% block content %}
-    <h1>Formulaire de contact</h1>
-    <form method="post" action="{{ url('contact!mail') }}" enctype="text/plain">
-      <ul>
-        {% if session.users.status is defined %}
+  <h1>Formulaire de contact</h1>
+  <form method="post" action="{{ url('contact!mail') }}" enctype="text/plain">
+    <ul>
+      {% if session.users.status is defined %}
         <li>
           <label for="first_name">Votre Prénom</label>
           <input id="first_name" type="text" name="first_name" value="{{ session.users.first_name }}" required>
@@ -28,14 +28,14 @@
           <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
         </li>
         <li>
-          <label for="content">Votre Message</label>
-          <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
+          <label for="contents">Votre Message</label>
+          <textarea id="contents" placeholder="Votre Message" name="content" rows="6" required></textarea>
         </li>
         <li>
           <input type="submit" value="Envoyer">
         </li>
 
-        {% else %}
+      {% else %}
         <li>
           <label for="first_name">Votre Prénom</label>
           <input id="first_name" type="text" placeholder="Prénom" name="first_name" required>
@@ -57,14 +57,14 @@
         </li>
 
         <li>
-          <label for="content">Votre Message</label>
-          <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
+          <label for="contents">Votre Message</label>
+          <textarea id="contents" placeholder="Votre Message" name="content" rows="6" required></textarea>
         </li>
 
         <li>
           <input type="submit" value="Envoyer">
         </li>
-        {% endif %}
-      </ul>
-    </form>
+      {% endif %}
+    </ul>
+  </form>
 {% endblock %}
