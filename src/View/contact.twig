@@ -7,46 +7,64 @@
 {% block title %} Me contacter {% endblock %}
 
 {% block content %}
-    <h1>Formulaire de contact</h1>
-    <form method="post" action="{{ url('contact!mail') }}">
+  <h1>Formulaire de contact</h1>
+  <form method="post" action="{{ url('contact!mail') }}" enctype="text/plain">
+    <ul>
+      {% if session.users.status is defined %}
+        <li>
+          <label for="first_name">Votre Prénom</label>
+          <input id="first_name" type="text" name="first_name" value="{{ session.users.first_name }}" required>
+        </li>
+        <li>
+          <label for="last_name">Votre nom</label>
+          <input id="last_name" type="text" name="last_name" value="{{ session.users.last_name }}" required>
+        </li>
+        <li>
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+        </li>
+        <li>
+          <label for="subject">L'objet du message</label>
+          <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
+        </li>
+        <li>
+          <label for="contents">Votre Message</label>
+          <textarea id="contents" placeholder="Votre Message" name="content" rows="6" required></textarea>
+        </li>
+        <li>
+          <input type="submit" value="Envoyer">
+        </li>
 
-        {% if session.users.status is defined %}
+      {% else %}
+        <li>
+          <label for="first_name">Votre Prénom</label>
+          <input id="first_name" type="text" placeholder="Prénom" name="first_name" required>
+        </li>
 
-        <label for="first_name">Votre Prénom</label>
-        <input id="first_name" type="text" name="first_name" value="{{ session.users.first_name }}" required>
+        <li>
+          <label for="last_name">Votre nom</label>
+          <input id="last_name" type="text" placeholder="Nom" name="last_name" required>
+        </li>
 
-        <label for="last_name">Votre nom</label>
-        <input id="last_name" type="text" name="last_name" value="{{ session.users.last_name }}" required>
+        <li>
+          <label for="email">E-mail</label>
+          <input id="email" type="email" placeholder="Mail" name="email" required>
+        </li>
 
-        <label for="email">E-mail</label>
-        <input id="email" type="email" name="email" value="{{ session.users.email }}" required>
+        <li>
+          <label for="subject">L'objet du message</label>
+          <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
+        </li>
 
-        <label for="subject">L'objet du message</label>
-        <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
+        <li>
+          <label for="contents">Votre Message</label>
+          <textarea id="contents" placeholder="Votre Message" name="content" rows="6" required></textarea>
+        </li>
 
-        <label for="content">Votre Message</label>
-        <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
-        <input type="submit" value="Envoyer">
-
-        {% else %}
-
-        <label for="first_name">Votre Prénom</label>
-        <input id="first_name" type="text" placeholder="Prénom" name="first_name" required>
-
-        <label for="last_name">Votre nom</label>
-        <input id="last_name" type="text" placeholder="Nom" name="last_name" required>
-
-        <label for="email">E-mail</label>
-        <input id="email" type="email" placeholder="Mail" name="email" required>
-
-        <label for="subject">L'objet du message</label>
-        <input id="subject" type="text" name="subject" placeholder="Objet du message" required>
-
-        <label for="content">Votre Message</label>
-        <textarea id="content" placeholder="Votre Message" name="content" rows="4" required></textarea>
-        <input type="submit" value="Envoyer">
-
-        {% endif %}
-
-    </form>
+        <li>
+          <input type="submit" value="Envoyer">
+        </li>
+      {% endif %}
+    </ul>
+  </form>
 {% endblock %}

@@ -28,8 +28,8 @@ abstract class MainModel
     public function __construct(PDOModel $database)
     {
         $this->database = $database;
-        $model          = explode('\\', get_class($this));
-        $this->table    = ucfirst(str_replace('Model', '', array_pop($model)));
+        $model = explode('\\', get_class($this));
+        $this->table = ucfirst(str_replace('Model', '', array_pop($model)));
     }
 
     /**
@@ -54,9 +54,9 @@ abstract class MainModel
      */
     public function createData(array $data)
     {
-        $keys   = implode(', ', array_keys($data));
+        $keys = implode(', ', array_keys($data));
         $values = implode('", "', $data);
-        $query  = 'INSERT INTO ' . $this->table . ' (' . $keys . ') VALUES ("' . $values . '")';
+        $query = 'INSERT INTO ' . $this->table . ' (' . $keys . ') VALUES ("' . $values . '")';
         $this->database->setData($query);
     }
 

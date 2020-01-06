@@ -11,12 +11,12 @@ abstract class SuperGlobalsController
     /**
      * @var mixed
      */
-    protected $get;
+    protected $get = null;
 
     /**
      * @var mixed
      */
-    protected $post;
+    protected $post = null;
 
     /**
      * @var mixed|null
@@ -47,8 +47,10 @@ abstract class SuperGlobalsController
      * @param int $id
      * @param string $first_name
      * @param string $last_name
+     * @param string $nickname
      * @param string $email
      * @param string $password
+     * @param string $status
      */
     public function sessionCreate(int $id, string $first_name, string $last_name, string $nickname, string $email, string $password,string $status)
     {

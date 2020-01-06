@@ -10,6 +10,9 @@ public/font/
 # Pictures
 public/img/
 
+# Dart-Sass
+public/dart-sass/
+
 # Frontend Dependencies
 public/node_modules/
 

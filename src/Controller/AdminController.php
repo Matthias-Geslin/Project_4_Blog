@@ -40,13 +40,10 @@ class AdminController extends MainController
     }
 
     /**
-     *  @return array
+     * @var array
      */
     private $post_content = [];
 
-    /**
-     * @return string
-     */
     private function postData()
     {
       $this->post_content['first_name']  = $this->post['first_name'];
@@ -58,7 +55,10 @@ class AdminController extends MainController
 
     private function postDataUser()
     {
-      $this->postData();
+      $this->post_content['first_name']  = $this->post['first_name'];
+      $this->post_content['last_name']   = $this->post['last_name'];
+      $this->post_content['nickname']    = $this->post['nickname'];
+      $this->post_content['email']       = $this->post['email'];
 
       $this->post_content['status']      = $this->getUserVar('status');
     }
@@ -111,6 +111,7 @@ class AdminController extends MainController
     }
 
     /**
+     * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -131,6 +132,12 @@ class AdminController extends MainController
       $this->redirect('admin');
     }
 
+    /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function modifyMethod()
     {
       if (!empty($this->post)) {
@@ -151,6 +158,7 @@ class AdminController extends MainController
     }
 
     /**
+     * @return string|mixed
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -161,6 +169,17 @@ class AdminController extends MainController
         $this->postDataUser();
 
         ModelFactory::getModel('Admin')->updateData($this->get['id'], $this->post_content);
+        $user = ModelFactory::getModel('Admin')->readData($this->post['email'], 'email');
+        $this->sessionDestroy();
+        $this->sessionCreate(
+          $user['id'],
+          $user['first_name'],
+          $user['last_name'],
+          $user['nickname'],
+          $user['email'],
+          $user['pass'],
+          $user['status']
+        );
 
         $this->redirect('admin');
       }

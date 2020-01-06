@@ -7,70 +7,64 @@
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
-<h1>Le chapitre: {{ post.title }}</h1>
-<article>
-  <ul class="full-content">
-  <li>
-    {{ post.title }}
-    <br>
-    {{ post.content | nl2br }}
-      </li>
-      <li>
-        <h2>Commentaires :</h2>
-      </li>
-      <li>
-        <ul class="full-comment">
-            {% for comment in comments %}
+    <h2>Lecture du chapitre</h2>
 
+    <article>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content | nl2br }}</p>
+    </article>
+
+    <article class="comment-block">
+        {% for comment in comments %}
             {% if comment.reported == 1 %}
-
+                <!-- Only comments unreported rendered -->
             {% else %}
-
-            <li>
-              <ul class="comment-card">
-                <li>Écrit par : {{ comment.author }}, le {{ comment.created_date }} </li>
-                <li>{{ comment.content | nl2br}}</li>
-
-                  {% if session.users.id is defined and session.users.id == comment.user_id %}
+                <ul class="comment-card bg-color-blue">
                     <li>
-                      <a class="btn-grey" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
-                         <i class="fas fa-times-circle fa-fw fa-lg"></i>
-                      </a>
+                        <p>Écrit par : <span>{{ comment.author }}</span>, le <span>{{ comment.created_date }}</span></p>
+                        <p>{{ comment.content | nl2br}}</p>
                     </li>
-                  {% endif %}
 
-                  {% if session.users.status is defined and session.users.status != "visitor" %}
-                    <li>
-                      <a class="btn-grey" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
-                        <i class="fas fa-exclamation-triangle"></i>
-                      </a>
-                    </li>
-                  {% endif %}
+                    {% if session.users.id is defined and session.users.id == comment.user_id %}
 
-              </ul>
-            </li>
+                        <li>
+                            <a class="btn-delete" href="{{ url('comments!deletecomment', {'com_id': comment.id, 'id':post.id}) }}">Suppression du commentaire
+                                <i class="fas fa-times-circle fa-fw fa-lg"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if session.users.status is defined and session.users.status != "visitor" %}
+                        <li>
+                            <a class="btn-report" href="{{ url('comments!report',{'id': comment.id}, {'id':comment.post_id}) }}">Signaler le commentaire
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             {% endif %}
+        {% endfor %}
+    </article>
 
-            {% endfor %}
+    {% if session.users.status is defined and session.users.status == 'admin' or session.users.status == 'member' %}
+        <section>
+            <h3>Ajout d'un commentaire sur le chapitre en cours de lecture</h3>
+            <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
+                <label for="content">Contenu du commentaire</label>
+                <textarea id="content" name="content" rows="8" cols="80"></textarea>
+                <input type="submit" value="Envoyer">
+            </form>
+        </section>
+    {% elseif session.users.status is defined and session.users.status == 'visitor' %}
+        <aside>
+            <p>Votre compte utilisateur <span>{{ session.users.nickname }}</span> doit être vérifié par l'administrateur afin d'envoyer un ou des commentaires !</p>
+        </aside>
+    {% endif %}
+
+    <nav>
+        <ul>
+            <li><a href="{{ url('post') }}">Retour aux chapitres</a></li>
+            <li><a href="{{ url('home') }}">Retour à l'accueil</a></li>
         </ul>
-      </li>
-  {% if session.users.status is defined and session.users.status == 'admin' or session.users.status == 'member' %}
-      <li>
-        <form action="{{ url('comments!create',{'id':post.id}) }}" method="post">
-          <label for="content">Contenu du commentaire</label>
-          <textarea id="content" name="content" rows="8" cols="80"></textarea>
-
-          <input type="submit" value="Envoyer">
-        </form>
-      </li>
-  {% elseif session.users.status is defined and session.users.status == 'visitor' %}
-    <li>Votre compte utilisateur <strong>{{ session.users.nickname }}</strong> doit être vérifié par l'administrateur afin d'envoyer un ou des commentaires !</li>
-  {% endif %}
-      <li class="back-post">
-        <a href="{{ url('post') }}">
-          <button type="button" name="button">Retour aux chapitres</button>
-        </a>
-      </li>
-</ul>
-</article>
+    </nav>
 {% endblock %}

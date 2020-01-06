@@ -7,7 +7,6 @@ use Twig\TwigFunction;
 /**
  * Class PhpAdditionalTwigExtension
  * Adds features to Twig Views
- * @package Pam\View
  */
 class PhpAdditionalExtension extends AbstractExtension
 {

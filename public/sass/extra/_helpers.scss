@@ -1,0 +1,38 @@
+/*/////////*/
+/* Helpers */
+.flex {    display: flex;}
+
+.hide {    display: none;}
+
+.relative {    position: relative;}
+
+.br-5 {    border-radius: 5%;}
+
+a { text-decoration: none;}
+
+img {  width: 100%;}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.bg-color-blue {
+  background-color: $dark-blue;
+}
+
+.large-l-blue {
+  background-color: $light-blue;
+}
+
+.transfo-upp {
+  text-transform: uppercase;
+}
+
+.fa-github {color: black;}
+.fa-twitter {color: $light-blue;}
+
+.fa-pen-square {color: $green;}
+.fa-times-circle {color: $light-red;}
+.fa-exclamation-triangle {color: $orange;}
+.fa-user-plus {color: $green;}
