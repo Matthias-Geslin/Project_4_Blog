@@ -59,6 +59,7 @@ class PostController extends MainController
     }
 
     /**
+     * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -68,7 +69,7 @@ class PostController extends MainController
       $id_post = $this->get['id'];
 
       $post_confirmed = ModelFactory::getModel('Comments')->listData($id_post, 'post_id');
-      
+
       if (!empty($post_confirmed))
       {
         ModelFactory::getModel('Comments')->deleteData($id_post, 'post_id');
