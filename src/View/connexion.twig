@@ -1,18 +1,18 @@
 {% extends "layout/template.twig" %}
 
 {% block description %}
-
+Espace de connexion ou d'inscription pour le site.
 {% endblock %}
+
+{% block title %}Connexion / Inscription{% endblock %}
 
 {% block content %}
     <ul>
-
         <input id="radio-signup" class="hide" name="sign" type="radio">
         <input id="radio-signin" class="hide" name="sign" type="radio" checked>
 
         <label for="radio-signin" class="sign-in"> Connexion au site </label>
         <label for="radio-signup" class="sign-up"> Inscription </label>
-
 
         <li id="signin">
             <form class="form" action="{{ url('connexion!launch') }}" method="post" enctype="multipart/form-data">

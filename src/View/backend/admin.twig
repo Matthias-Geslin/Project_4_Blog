@@ -1,10 +1,10 @@
 {% extends 'layout/template.twig' %}
 
 {% block description %}
-
+Page d'administration restreinte, accès aux chapitres, commentaires associés et gestion des utilisateurs.
 {% endblock %}
 
-{% block title %} Admin {% endblock %}
+{% block title %} Administration {% endblock %}
 
 {% block content %}
 {% if session.users.status is defined and session.users.status == 'admin' %}
