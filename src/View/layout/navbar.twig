@@ -1,72 +1,72 @@
-  <nav>
-      <ul class="transfo-upp">
-      {% if session.users.status is defined and session.users.status == 'admin' %}
-          <li>
-              <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
-          </li>
-          <li>
-              <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-          </li>
-          <li>
-              <a href="{{ url('connexion') }}" title="Administration"><i class="fas fa-users-cog"></i> Administration</a>
-          </li>
-          <li><i class="fas fa-user"></i> Admin connecté</li>
-          <li>
-            <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
-          </li>
+<nav>
+    <ul class="transfo-upp">
+        {% if session.users.status is defined and session.users.status == 'admin' %}
+            <li>
+                <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
+            </li>
+            <li>
+                <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
+            </li>
+            <li>
+                <a href="{{ url('connexion') }}" title="Administration"><i class="fas fa-users-cog"></i> Administration</a>
+            </li>
+            <li><i class="fas fa-user"></i> Admin connecté</li>
+            <li>
+                <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
+            </li>
 
-          <!-- Connexion d'un membre -->
-          {% elseif session.users.status is defined and session.users.status == 'member' %}
-          <li>
-              <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
-          </li>
-          <li>
-              <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-          </li>
-          <li>
-              <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
-          </li>
-          <li>
-              <a href="{{ url('connexion!useredit', {'id': session.users.id }) }}" title="Page personnelle">Page personnelle</a>
-          </li>
-          <li><i class="fas fa-user"></i> Utilisateur connecté: {{ session.users.nickname }}
-          </li>
-          <li>
-            <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
-          </li>
+            <!-- Connexion d'un membre -->
+        {% elseif session.users.status is defined and session.users.status == 'member' %}
+            <li>
+                <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
+            </li>
+            <li>
+                <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
+            </li>
+            <li>
+                <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
+            </li>
+            <li>
+                <a href="{{ url('connexion!useredit', {'id': session.users.id }) }}" title="Page personnelle">Page personnelle</a>
+            </li>
+            <li><i class="fas fa-user"></i> Utilisateur connecté: {{ session.users.nickname }}
+            </li>
+            <li>
+                <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
+            </li>
 
-          <!-- Visiteur -->
-          {% elseif session.users.status is defined and session.users.status == 'visitor' %}
-          <li>
-              <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
-          </li>
-          <li>
-              <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-          </li>
-          <li>
-              <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
-          </li>
-          <li title="Le compte doit être validé par un administrateur."><i class="fas fa-user"></i>
-            Utilisateur non vérifié: {{ session.users.nickname }}
-          </li>
-          <li>
-              <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
-          </li>
-          <!-- Non connecté -->
-          {% else %}
-          <li>
-              <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
-          </li>
-          <li>
-              <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
-          </li>
-          <li>
-              <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
-          </li>
-          <li>
-              <a href="{{ url('connexion') }}" title="Connexion / Inscription"><i class="fas fa-user-lock"></i> Connexion / Inscription</a>
-          </li>
-      {% endif %}
+            <!-- Visiteur -->
+        {% elseif session.users.status is defined and session.users.status == 'visitor' %}
+            <li>
+                <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
+            </li>
+            <li>
+                <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
+            </li>
+            <li>
+                <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
+            </li>
+            <li title="Le compte doit être validé par un administrateur."><i class="fas fa-user"></i>
+                Utilisateur non vérifié: {{ session.users.nickname }}
+            </li>
+            <li>
+                <a href="{{ url('connexion!logout') }}" title="Déconnexion">Déconnexion</a>
+            </li>
+            <!-- Non connecté -->
+        {% else %}
+            <li>
+                <a href="{{ url('home') }}" title="Page d'accueil"><i class="fas fa-home"></i> Accueil</a>
+            </li>
+            <li>
+                <a href="{{ url('post') }}" title="Tout les chapitres"><i class="fas fa-book-open"></i> Chapitres</a>
+            </li>
+            <li>
+                <a href="{{ url('contact') }}" title="Formulaire de contact"><i class="fas fa-envelope-open-text"></i> Contact</a>
+            </li>
+            <li>
+                <a href="{{ url('connexion') }}" title="Connexion / Inscription"><i class="fas fa-user-lock"></i> Connexion / Inscription</a>
+            </li>
+        {% endif %}
 
-      </ul>
-  </nav>
+    </ul>
+</nav>
