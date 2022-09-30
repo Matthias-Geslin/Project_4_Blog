@@ -9,7 +9,7 @@
     }
   },
   "require": {
-    "twig/twig": "^2.12.2",
+    "twig/twig": "^3.4.3",
     "ext-pdo": "*"
   },
   "require-dev": {
